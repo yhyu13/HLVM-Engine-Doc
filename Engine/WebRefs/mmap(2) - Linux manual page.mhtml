@@ -1,0 +1,2288 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://man7.org/linux/man-pages/man2/mmap.2.html
+Subject: mmap(2) - Linux manual page
+Date: Mon, 9 Mar 2026 23:35:06 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--u0W7jpJyk8oPj2dusy5nTLwzwWhxwNUETBONPB5Fd1----"
+
+
+------MultipartBoundary--u0W7jpJyk8oPj2dusy5nTLwzwWhxwNUETBONPB5Fd1----
+Content-Type: text/html
+Content-ID: <frame-70D2749904700FC734E0365AF9AFA708@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://man7.org/linux/man-pages/man2/mmap.2.html
+
+<!DOCTYPE html><html lang=3D"en-US"><head><meta http-equiv=3D"Content-Type"=
+ content=3D"text/html; charset=3DUTF-8">
+   =20
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1">
+
+    <title>mmap(2) - Linux manual page</title>
+    <link rel=3D"stylesheet" type=3D"text/css" href=3D"https://man7.org/sty=
+le.css" title=3D"style">
+    <link rel=3D"stylesheet" type=3D"text/css" href=3D"https://man7.org/lin=
+ux/man-pages/style.css" title=3D"style">
+</head>
+
+<body>
+
+<div class=3D"page-top"><a id=3D"top_of_page"></a></div>
+<!--%%%TOP_BAR%%%-->
+    <div class=3D"nav-bar">
+        <table class=3D"nav-table">
+            <tbody><tr>
+                <td class=3D"nav-cell">
+                    <p class=3D"nav-text">
+                        <a href=3D"https://man7.org/index.html">man7.org</a=
+> &gt; Linux &gt; <a href=3D"https://man7.org/linux/man-pages/index.html">m=
+an-pages</a>
+                    </p>
+                </td>
+                <td class=3D"training-cell">
+                    <p class=3D"training-text"><a class=3D"training-link" h=
+ref=3D"http://man7.org/training/">Linux/UNIX system programming training</a=
+></p>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+<hr class=3D"nav-end">
+
+<!--%%%PAGE_START%%%-->
+<h1>mmap(2) =E2=80=94 Linux manual page</h1>
+
+
+<table class=3D"sec-table">
+<tbody><tr>
+    <td>
+        <p class=3D"section-dir">
+<a href=3D"https://man7.org/linux/man-pages/man2/mmap.2.html#NAME">NAME</a>=
+ | <a href=3D"https://man7.org/linux/man-pages/man2/mmap.2.html#LIBRARY">LI=
+BRARY</a> | <a href=3D"https://man7.org/linux/man-pages/man2/mmap.2.html#SY=
+NOPSIS">SYNOPSIS</a> | <a href=3D"https://man7.org/linux/man-pages/man2/mma=
+p.2.html#DESCRIPTION">DESCRIPTION</a> | <a href=3D"https://man7.org/linux/m=
+an-pages/man2/mmap.2.html#RETURN_VALUE">RETURN&nbsp;VALUE</a> | <a href=3D"=
+https://man7.org/linux/man-pages/man2/mmap.2.html#ERRORS">ERRORS</a> | <a h=
+ref=3D"https://man7.org/linux/man-pages/man2/mmap.2.html#ATTRIBUTES">ATTRIB=
+UTES</a> | <a href=3D"https://man7.org/linux/man-pages/man2/mmap.2.html#VER=
+SIONS">VERSIONS</a> | <a href=3D"https://man7.org/linux/man-pages/man2/mmap=
+.2.html#STANDARDS">STANDARDS</a> | <a href=3D"https://man7.org/linux/man-pa=
+ges/man2/mmap.2.html#HISTORY">HISTORY</a> | <a href=3D"https://man7.org/lin=
+ux/man-pages/man2/mmap.2.html#NOTES">NOTES</a> | <a href=3D"https://man7.or=
+g/linux/man-pages/man2/mmap.2.html#CAVEATS">CAVEATS</a> | <a href=3D"https:=
+//man7.org/linux/man-pages/man2/mmap.2.html#BUGS">BUGS</a> | <a href=3D"htt=
+ps://man7.org/linux/man-pages/man2/mmap.2.html#EXAMPLES">EXAMPLES</a> | <a =
+href=3D"https://man7.org/linux/man-pages/man2/mmap.2.html#SEE_ALSO">SEE&nbs=
+p;ALSO</a> | <a href=3D"https://man7.org/linux/man-pages/man2/mmap.2.html#C=
+OLOPHON">COLOPHON</a>
+        </p>
+    </td>
+</tr>
+<tr>
+    <td class=3D"search-box">
+        <div class=3D"man-search-box">
+
+            <form method=3D"get" action=3D"https://www.google.com/search">
+                <fieldset class=3D"man-search">
+                    <input type=3D"text" name=3D"q" size=3D"10" maxlength=
+=3D"255" value=3D"">
+                   =20
+                    <input type=3D"submit" name=3D"sa" value=3D"Search onli=
+ne pages">
+                </fieldset>
+            </form>
+
+        </div>
+    </td>
+    <td> </td>
+</tr>
+</tbody></table>
+
+<!--%%%TEXT_START%%%-->
+<pre><span class=3D"headline"><i>mmap</i>(2)                    System Call=
+s Manual                    <i>mmap</i>(2)</span>
+</pre>
+<h2><a id=3D"NAME" href=3D"https://man7.org/linux/man-pages/man2/mmap.2.htm=
+l#NAME"></a>NAME  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https://man7.org/l=
+inux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top-link">top</=
+span></a></h2><pre>       mmap, munmap - map or unmap files or devices into=
+ memory
+</pre>
+<h2><a id=3D"LIBRARY" href=3D"https://man7.org/linux/man-pages/man2/mmap.2.=
+html#LIBRARY"></a>LIBRARY  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https://m=
+an7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top-li=
+nk">top</span></a></h2><pre>       Standard C library (<i>libc</i>, <i>-lc<=
+/i>)
+</pre>
+<h2><a id=3D"SYNOPSIS" href=3D"https://man7.org/linux/man-pages/man2/mmap.2=
+.html#SYNOPSIS"></a>SYNOPSIS  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https:=
+//man7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top=
+-link">top</span></a></h2><pre>       <b>#include &lt;sys/mman.h&gt;</b>
+
+       <b>void *mmap(</b>size_t length;
+                  <b>void </b><i>addr</i><b>[</b><i>length</i><b>], size_t =
+</b><i>length</i><b>, int </b><i>prot</i><b>, int </b><i>flags</i><b>,</b>
+                  <b>int </b><i>fd</i><b>, off_t </b><i>offset</i><b>);</b>
+       <b>int munmap(</b>size_t length;
+                  <b>void </b><i>addr</i><b>[</b><i>length</i><b>], size_t =
+</b><i>length</i><b>);</b>
+
+       See VERSIONS for information on feature test macro requirements.
+</pre>
+<h2><a id=3D"DESCRIPTION" href=3D"https://man7.org/linux/man-pages/man2/mma=
+p.2.html#DESCRIPTION"></a>DESCRIPTION  &nbsp; &nbsp; &nbsp; &nbsp; <a href=
+=3D"https://man7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span cl=
+ass=3D"top-link">top</span></a></h2><pre>       <b>mmap</b>() creates a new=
+ mapping in the virtual address space of the
+       calling process.  The starting address for the new mapping is
+       specified in <i>addr</i>.  The <i>length</i> argument specifies the =
+length of
+       the mapping (which must be greater than 0).
+
+       If <i>addr</i> is NULL, then the kernel chooses the (page-aligned)
+       address at which to create the mapping; this is the most portable
+       method of creating a new mapping.  If <i>addr</i> is not NULL, then =
+the
+       kernel takes it as a hint about where to place the mapping; on
+       Linux, the kernel will pick a nearby page boundary (but always
+       above or equal to the value specified by
+       <i>/proc/sys/vm/mmap_min_addr</i>) and attempt to create the mapping
+       there.  If another mapping already exists there, the kernel picks
+       a new address that may or may not depend on the hint.  The address
+       of the new mapping is returned as the result of the call.
+
+       The contents of a file mapping (as opposed to an anonymous
+       mapping; see <b>MAP_ANONYMOUS </b>below), are initialized using <i>l=
+ength</i>
+       bytes starting at offset <i>offset</i> in the file (or other object)
+       referred to by the file descriptor <i>fd</i>.  <i>offset</i> must be=
+ a multiple
+       of the page size as returned by <i>sysconf(_SC_PAGE_SIZE)</i>.
+
+       After the <b>mmap</b>() call has returned, the file descriptor, <i>f=
+d</i>, can
+       be closed immediately without invalidating the mapping.
+
+       The <i>prot</i> argument describes the desired memory protection of =
+the
+       mapping (and must not conflict with the open mode of the file).
+       It is either <b>PROT_NONE </b>or the bitwise OR of one or more of th=
+e
+       following flags:
+
+       <b>PROT_EXEC</b>
+              Pages may be executed.
+
+       <b>PROT_READ</b>
+              Pages may be read.
+
+       <b>PROT_WRITE</b>
+              Pages may be written.
+
+       <b>PROT_NONE</b>
+              Pages may not be accessed.
+
+   <b>The flags argument</b>
+       The <i>flags</i> argument determines whether updates to the mapping =
+are
+       visible to other processes mapping the same region, and whether
+       updates are carried through to the underlying file.  This behavior
+       is determined by including exactly one of the following values in
+       <i>flags</i>:
+
+       <b>MAP_SHARED</b>
+              Share this mapping.  Updates to the mapping are visible to
+              other processes mapping the same region, and (in the case
+              of file-backed mappings) are carried through to the
+              underlying file.  (To precisely control when updates are
+              carried through to the underlying file requires the use of
+              <a href=3D"https://man7.org/linux/man-pages/man2/msync.2.html=
+">msync(2)</a>.)
+
+       <b>MAP_SHARED_VALIDATE </b>(since Linux 4.15)
+              This flag provides the same behavior as <b>MAP_SHARED </b>exc=
+ept
+              that <b>MAP_SHARED </b>mappings ignore unknown flags in <i>fl=
+ags</i>.  By
+              contrast, when creating a mapping using
+              <b>MAP_SHARED_VALIDATE</b>, the kernel verifies all passed fl=
+ags
+              are known and fails the mapping with the error <b>EOPNOTSUPP<=
+/b>
+              for unknown flags.  This mapping type is also required to
+              be able to use some mapping flags (e.g., <b>MAP_SYNC</b>).
+
+       <b>MAP_PRIVATE</b>
+              Create a private copy-on-write mapping.  Updates to the
+              mapping are not visible to other processes mapping the same
+              file, and are not carried through to the underlying file.
+              It is unspecified whether changes made to the file after
+              the <b>mmap</b>() call are visible in the mapped region.
+
+       Both <b>MAP_SHARED </b>and <b>MAP_PRIVATE </b>are described in POSIX=
+.1-2001 and
+       POSIX.1-2008.  <b>MAP_SHARED_VALIDATE </b>is a Linux extension.
+
+       In addition, zero or more of the following values can be ORed in
+       <i>flags</i>:
+
+       <b>MAP_32BIT </b>(since Linux 2.4.20, 2.6)
+              Put the mapping into the first 2 Gigabytes of the process
+              address space.  This flag is supported only on x86-64, for
+              64-bit programs.  It was added to allow thread stacks to be
+              allocated somewhere in the first 2 GB of memory, so as to
+              improve context-switch performance on some early 64-bit
+              processors.  Modern x86-64 processors no longer have this
+              performance problem, so use of this flag is not required on
+              those systems.  The <b>MAP_32BIT </b>flag is ignored when
+              <b>MAP_FIXED </b>is set.
+
+       <b>MAP_ANON</b>
+              Synonym for <b>MAP_ANONYMOUS</b>; provided for compatibility =
+with
+              other implementations.
+
+       <b>MAP_ANONYMOUS</b>
+              The mapping is not backed by any file; its contents are
+              initialized to zero.  The <i>fd</i> argument is ignored; howe=
+ver,
+              some implementations require <i>fd</i> to be -1 if <b>MAP_ANO=
+NYMOUS</b>
+              (or <b>MAP_ANON</b>) is specified, and portable applications
+              should ensure this.  The <i>offset</i> argument should be zer=
+o.
+              Support for <b>MAP_ANONYMOUS </b>in conjunction with <b>MAP_S=
+HARED</b>
+              was added in Linux 2.4.
+
+       <b>MAP_DENYWRITE</b>
+              This flag is ignored.  (Long ago=E2=80=94Linux 2.0 and earlie=
+r=E2=80=94it
+              signaled that attempts to write to the underlying file
+              should fail with <b>ETXTBSY</b>.  But this was a source of de=
+nial-
+              of-service attacks.)
+
+       <b>MAP_EXECUTABLE</b>
+              This flag is ignored.
+
+       <b>MAP_FILE</b>
+              Compatibility flag.  Ignored.
+
+       <b>MAP_FIXED</b>
+              Don't interpret <i>addr</i> as a hint: place the mapping at
+              exactly that address.  <i>addr</i> must be suitably aligned: =
+for
+              most architectures a multiple of the page size is
+              sufficient; however, some architectures may impose
+              additional restrictions.  If the memory region specified by
+              <i>addr</i> and <i>length</i> overlaps pages of any existing =
+mapping(s),
+              then the overlapped part of the existing mapping(s) will be
+              discarded.  If the specified address cannot be used, <b>mmap<=
+/b>()
+              will fail.
+
+              Software that aspires to be portable should use the
+              <b>MAP_FIXED </b>flag with care, keeping in mind that the exa=
+ct
+              layout of a process's memory mappings is allowed to change
+              significantly between Linux versions, C library versions,
+              and operating system releases.  <i>Carefully read the</i>
+              <i>discussion of this flag in NOTES!</i>
+
+       <b>MAP_FIXED_NOREPLACE </b>(since Linux 4.17)
+              This flag provides behavior that is similar to <b>MAP_FIXED</=
+b>
+              with respect to the <i>addr</i> enforcement, but differs in t=
+hat
+              <b>MAP_FIXED_NOREPLACE </b>never clobbers a preexisting mappe=
+d
+              range.  If the requested range would collide with an
+              existing mapping, then this call fails with the error
+              <b>EEXIST.  </b>This flag can therefore be used as a way to
+              atomically (with respect to other threads) attempt to map
+              an address range: one thread will succeed; all others will
+              report failure.
+
+              Note that older kernels which do not recognize the
+              <b>MAP_FIXED_NOREPLACE </b>flag will typically (upon detectin=
+g a
+              collision with a preexisting mapping) fall back to a =E2=80=
+=9Cnon-
+              <b>MAP_FIXED</b>=E2=80=9D type of behavior: they will return =
+an address
+              that is different from the requested address.  Therefore,
+              backward-compatible software should check the returned
+              address against the requested address.
+
+       <b>MAP_GROWSDOWN</b>
+              This flag is used for stacks.  It indicates to the kernel
+              virtual memory system that the mapping should extend
+              downward in memory.  The return address is one page lower
+              than the memory area that is actually created in the
+              process's virtual address space.  Touching an address in
+              the "guard" page below the mapping will cause the mapping
+              to grow by a page.  This growth can be repeated until the
+              mapping grows to within a page of the high end of the next
+              lower mapping, at which point touching the "guard" page
+              will result in a <b>SIGSEGV </b>signal.
+
+       <b>MAP_HUGETLB </b>(since Linux 2.6.32)
+              Allocate the mapping using "huge" pages.  See the Linux
+              kernel source file
+              <i>Documentation/admin-guide/mm/hugetlbpage.rst</i> for furth=
+er
+              information, as well as NOTES, below.
+
+       <b>MAP_HUGE_2MB</b>
+       <b>MAP_HUGE_1GB </b>(since Linux 3.8)
+              Used in conjunction with <b>MAP_HUGETLB </b>to select alterna=
+tive
+              hugetlb page sizes (respectively, 2 MB and 1 GB) on systems
+              that support multiple hugetlb page sizes.
+
+              More generally, the desired huge page size can be
+              configured by encoding the base-2 logarithm of the desired
+              page size in the six bits at the offset <b>MAP_HUGE_SHIFT</b>=
+.  (A
+              value of zero in this bit field provides the default huge
+              page size; the default huge page size can be discovered via
+              the <i>Hugepagesize</i> field exposed by <i>/proc/meminfo</i>=
+.)  Thus,
+              the above two constants are defined as:
+
+                  #define MAP_HUGE_2MB    (21 &lt;&lt; MAP_HUGE_SHIFT)
+                  #define MAP_HUGE_1GB    (30 &lt;&lt; MAP_HUGE_SHIFT)
+
+              The range of huge page sizes that are supported by the
+              system can be discovered by listing the subdirectories in
+              <i>/sys/kernel/mm/hugepages</i>.
+
+       <b>MAP_LOCKED </b>(since Linux 2.5.37)
+              Mark the mapped region to be locked in the same way as
+              <a href=3D"https://man7.org/linux/man-pages/man2/mlock.2.html=
+">mlock(2)</a>.  This implementation will try to populate
+              (prefault) the whole range but the <b>mmap</b>() call doesn't=
+ fail
+              with <b>ENOMEM </b>if this fails.  Therefore major faults mig=
+ht
+              happen later on.  So the semantic is not as strong as
+              <a href=3D"https://man7.org/linux/man-pages/man2/mlock.2.html=
+">mlock(2)</a>.  One should use <b>mmap</b>() plus <a href=3D"https://man7.=
+org/linux/man-pages/man2/mlock.2.html">mlock(2)</a> when major
+              faults are not acceptable after the initialization of the
+              mapping.  The <b>MAP_LOCKED </b>flag is ignored in older kern=
+els.
+
+       <b>MAP_NONBLOCK </b>(since Linux 2.5.46)
+              This flag is meaningful only in conjunction with
+              <b>MAP_POPULATE</b>.  Don't perform read-ahead: create page t=
+ables
+              entries only for pages that are already present in RAM.
+              Since Linux 2.6.23, this flag causes <b>MAP_POPULATE </b>to d=
+o
+              nothing.  One day, the combination of <b>MAP_POPULATE </b>and
+              <b>MAP_NONBLOCK </b>may be reimplemented.
+
+       <b>MAP_NORESERVE</b>
+              Do not reserve swap space for this mapping.  When swap
+              space is reserved, one has the guarantee that it is
+              possible to modify the mapping.  When swap space is not
+              reserved one might get <b>SIGSEGV </b>upon a write if no phys=
+ical
+              memory is available.  See also the discussion of the file
+              <i>/proc/sys/vm/overcommit_memory</i> in <a href=3D"https://m=
+an7.org/linux/man-pages/man5/proc_sys_vm.5.html">proc_sys_vm(5)</a>.  Befor=
+e
+              Linux 2.6, this flag had effect only for private writable
+              mappings.
+
+       <b>MAP_POPULATE </b>(since Linux 2.5.46)
+              Populate (prefault) page tables for a mapping.  For a file
+              mapping, this causes read-ahead on the file.  This will
+              help to reduce blocking on page faults later.  The <b>mmap</b=
+>()
+              call doesn't fail if the mapping cannot be populated (for
+              example, due to limitations on the number of mapped huge
+              pages when using <b>MAP_HUGETLB</b>).  Support for <b>MAP_POP=
+ULATE </b>in
+              conjunction with private mappings was added in Linux
+              2.6.23.
+
+       <b>MAP_STACK </b>(since Linux 2.6.27)
+              Allocate the mapping at an address suitable for a process
+              or thread stack.
+
+              This flag is currently a no-op on Linux.  However, by
+              employing this flag, applications can ensure that they
+              transparently obtain support if the flag is implemented in
+              the future.  Thus, it is used in the glibc threading
+              implementation to allow for the fact that some
+              architectures may (later) require special treatment for
+              stack allocations.  A further reason to employ this flag is
+              portability: <b>MAP_STACK </b>exists (and has an effect) on s=
+ome
+              other systems (e.g., some of the BSDs).
+
+       <b>MAP_SYNC </b>(since Linux 4.15)
+              This flag is available only with the <b>MAP_SHARED_VALIDATE</=
+b>
+              mapping type; mappings of type <b>MAP_SHARED </b>will silentl=
+y
+              ignore this flag.  This flag is supported only for files
+              supporting DAX (direct mapping of persistent memory).  For
+              other files, creating a mapping with this flag results in
+              an <b>EOPNOTSUPP </b>error.
+
+              Shared file mappings with this flag provide the guarantee
+              that while some memory is mapped writable in the address
+              space of the process, it will be visible in the same file
+              at the same offset even after the system crashes or is
+              rebooted.  In conjunction with the use of appropriate CPU
+              instructions, this provides users of such mappings with a
+              more efficient way of making data modifications persistent.
+
+       <b>MAP_UNINITIALIZED </b>(since Linux 2.6.33)
+              Don't clear anonymous pages.  This flag is intended to
+              improve performance on embedded devices.  This flag is
+              honored only if the kernel was configured with the
+              <b>CONFIG_MMAP_ALLOW_UNINITIALIZED </b>option.  Because of th=
+e
+              security implications, that option is normally enabled only
+              on embedded devices (i.e., devices where one has complete
+              control of the contents of user memory).
+
+       Of the above flags, only <b>MAP_FIXED </b>is specified in POSIX.1-20=
+01
+       and POSIX.1-2008.  However, most systems also support
+       <b>MAP_ANONYMOUS </b>(or its synonym <b>MAP_ANON</b>).
+
+   <b>munmap()</b>
+       The <b>munmap</b>() system call deletes the mappings for the specifi=
+ed
+       address range, and causes further references to addresses within
+       the range to generate invalid memory references.  The region is
+       also automatically unmapped when the process is terminated.  On
+       the other hand, closing the file descriptor does not unmap the
+       region.
+
+       The address <i>addr</i> must be a multiple of the page size (but <i>=
+length</i>
+       need not be).  All pages containing a part of the indicated range
+       are unmapped, and subsequent references to these pages will
+       generate <b>SIGSEGV</b>.  It is not an error if the indicated range =
+does
+       not contain any mapped pages.
+</pre>
+<h2><a id=3D"RETURN_VALUE" href=3D"https://man7.org/linux/man-pages/man2/mm=
+ap.2.html#RETURN_VALUE"></a>RETURN VALUE  &nbsp; &nbsp; &nbsp; &nbsp; <a hr=
+ef=3D"https://man7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span =
+class=3D"top-link">top</span></a></h2><pre>       On success, <b>mmap</b>()=
+ returns a pointer to the mapped area.  On
+       error, the value <b>MAP_FAILED </b>(that is, <i>(void *) -1</i>) is =
+returned,
+       and <i><a href=3D"https://man7.org/linux/man-pages/man3/errno.3.html=
+">errno</a></i> is set to indicate the error.
+
+       On success, <b>munmap</b>() returns 0.  On failure, it returns -1, a=
+nd
+       <i><a href=3D"https://man7.org/linux/man-pages/man3/errno.3.html">er=
+rno</a></i> is set to indicate the error (probably to <b>EINVAL</b>).
+</pre>
+<h2><a id=3D"ERRORS" href=3D"https://man7.org/linux/man-pages/man2/mmap.2.h=
+tml#ERRORS"></a>ERRORS  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https://man7=
+.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top-link"=
+>top</span></a></h2><pre>       <b>EACCES </b>A file descriptor refers to a=
+ non-regular file.  Or a file
+              mapping was requested, but <i>fd</i> is not open for reading.=
+  Or
+              <b>MAP_SHARED </b>was requested and <b>PROT_WRITE </b>is set,=
+ but <i>fd</i> is
+              not open in read/write (<b>O_RDWR</b>) mode.  Or <b>PROT_WRIT=
+E </b>is
+              set, but the file is append-only.
+
+       <b>EAGAIN </b>The file has been locked, or too much memory has been
+              locked (see <a href=3D"https://man7.org/linux/man-pages/man2/=
+setrlimit.2.html">setrlimit(2)</a>).
+
+       <b>EBADF  </b><i>fd</i> is not a valid file descriptor (and <b>MAP_A=
+NONYMOUS </b>was
+              not set).
+
+       <b>EEXIST MAP_FIXED_NOREPLACE </b>was specified in <i>flags</i>, and=
+ the range
+              covered by <i>addr</i> and <i>length</i> clashes with an exis=
+ting
+              mapping.
+
+       <b>EINVAL </b>We don't like <i>addr</i>, <i>length</i>, or <i>offset=
+</i> (e.g., they are too
+              large, or not aligned on a page boundary).
+
+       <b>EINVAL </b>(since Linux 2.6.12) <i>length</i> was 0.
+
+       <b>EINVAL </b><i>flags</i> contained none of <b>MAP_PRIVATE</b>, <b>=
+MAP_SHARED</b>, or
+              <b>MAP_SHARED_VALIDATE</b>.
+
+       <b>ENFILE </b>The system-wide limit on the total number of open file=
+s has
+              been reached.
+
+       <b>ENODEV </b>The underlying filesystem of the specified file does n=
+ot
+              support memory mapping.
+
+       <b>ENOMEM </b>No memory is available.
+
+       <b>ENOMEM </b>The process's maximum number of mappings would have be=
+en
+              exceeded.  This error can also occur for <b>munmap</b>(), whe=
+n
+              unmapping a region in the middle of an existing mapping,
+              since this results in two smaller mappings on either side
+              of the region being unmapped.
+
+       <b>ENOMEM </b>(since Linux 4.7) The process's <b>RLIMIT_DATA </b>lim=
+it,
+              described in <a href=3D"https://man7.org/linux/man-pages/man2=
+/getrlimit.2.html">getrlimit(2)</a>, would have been exceeded.
+
+       <b>ENOMEM </b>We don't like <i>addr</i>, because it exceeds the virt=
+ual address
+              space of the CPU.
+
+       <b>EOVERFLOW</b>
+              On 32-bit architecture together with the large file
+              extension (i.e., using 64-bit <i>off_t</i>): the number of pa=
+ges
+              used for <i>length</i> plus number of pages used for <i>offse=
+t</i> would
+              overflow <i>unsigned long</i> (32 bits).
+
+       <b>EPERM  </b>The <i>prot</i> argument asks for <b>PROT_EXEC </b>but=
+ the mapped area
+              belongs to a file on a filesystem that was mounted no-exec.
+
+       <b>EPERM  </b>The operation was prevented by a file seal; see <a hre=
+f=3D"https://man7.org/linux/man-pages/man2/fcntl.2.html">fcntl(2)</a>.
+
+       <b>EPERM  </b>The <b>MAP_HUGETLB </b>flag was specified, but the cal=
+ler was not
+              privileged (did not have the <b>CAP_IPC_LOCK </b>capability) =
+and
+              is not a member of the <i>hugetlb_shm_group</i> group; see th=
+e
+              description of <i>/proc/sys/vm/hugetlb_shm_group</i> in
+              <a href=3D"https://man7.org/linux/man-pages/man5/proc_sys_vm.=
+5.html">proc_sys_vm(5)</a>.
+
+       <b>ETXTBSY</b>
+              <b>MAP_DENYWRITE </b>was set but the object specified by <i>f=
+d</i> is
+              open for writing.
+
+       Use of a mapped region can result in these signals:
+
+       <b>SIGSEGV</b>
+              Attempted write into a region mapped as read-only.
+
+       <b>SIGBUS </b>Attempted access to a page of the buffer that lies bey=
+ond
+              the end of the mapped file.  For an explanation of the
+              treatment of the bytes in the page that corresponds to the
+              end of a mapped file that is not a multiple of the page
+              size, see NOTES.
+</pre>
+<h2><a id=3D"ATTRIBUTES" href=3D"https://man7.org/linux/man-pages/man2/mmap=
+.2.html#ATTRIBUTES"></a>ATTRIBUTES  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"=
+https://man7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=
+=3D"top-link">top</span></a></h2><pre>       For an explanation of the term=
+s used in this section, see
+       <a href=3D"https://man7.org/linux/man-pages/man7/attributes.7.html">=
+attributes(7)</a>.
+       =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=90
+       =E2=94=82 <b>Interface                            </b>=E2=94=82 <b>A=
+ttribute     </b>=E2=94=82 <b>Value   </b>=E2=94=82
+       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=BC=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=BC=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=A4
+       =E2=94=82 <b>mmap</b>(), <b>munmap</b>()                     =E2=94=
+=82 Thread safety =E2=94=82 MT-Safe =E2=94=82
+       =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=98
+</pre>
+<h2><a id=3D"VERSIONS" href=3D"https://man7.org/linux/man-pages/man2/mmap.2=
+.html#VERSIONS"></a>VERSIONS  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https:=
+//man7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top=
+-link">top</span></a></h2><pre>       On some hardware architectures (e.g.,=
+ i386), <b>PROT_WRITE </b>implies
+       <b>PROT_READ</b>.  It is architecture dependent whether <b>PROT_READ=
+ </b>implies
+       <b>PROT_EXEC </b>or not.  Portable programs should always set <b>PRO=
+T_EXEC</b>
+       if they intend to execute code in the new mapping.
+
+       The portable way to create a mapping is to specify <i>addr</i> as 0
+       (NULL), and omit <b>MAP_FIXED </b>from <i>flags</i>.  In this case, =
+the system
+       chooses the address for the mapping; the address is chosen so as
+       not to conflict with any existing mapping, and will not be 0.  If
+       the <b>MAP_FIXED </b>flag is specified, and <i>addr</i> is 0 (NULL),=
+ then the
+       mapped address will be 0 (NULL).
+
+       Certain <i>flags</i> constants are defined only if suitable feature =
+test
+       macros are defined (possibly by default): <b>_DEFAULT_SOURCE </b>wit=
+h
+       glibc 2.19 or later; or <b>_BSD_SOURCE </b>or <b>_SVID_SOURCE </b>in=
+ glibc 2.19
+       and earlier.  (Employing <b>_GNU_SOURCE </b>also suffices, and requi=
+ring
+       that macro specifically would have been more logical, since these
+       flags are all Linux-specific.)  The relevant flags are: <b>MAP_32BIT=
+</b>,
+       <b>MAP_ANONYMOUS </b>(and the synonym <b>MAP_ANON</b>), <b>MAP_DENYW=
+RITE</b>,
+       <b>MAP_EXECUTABLE</b>, <b>MAP_FILE</b>, <b>MAP_GROWSDOWN</b>, <b>MAP=
+_HUGETLB</b>, <b>MAP_LOCKED</b>,
+       <b>MAP_NONBLOCK</b>, <b>MAP_NORESERVE</b>, <b>MAP_POPULATE</b>, and =
+<b>MAP_STACK</b>.
+
+   <b>C library/kernel differences</b>
+       This page describes the interface provided by the glibc <b>mmap</b>(=
+)
+       wrapper function.  Originally, this function invoked a system call
+       of the same name.  Since Linux 2.4, that system call has been
+       superseded by <a href=3D"https://man7.org/linux/man-pages/man2/mmap2=
+.2.html">mmap2(2)</a>, and nowadays the glibc <b>mmap</b>() wrapper
+       function invokes <a href=3D"https://man7.org/linux/man-pages/man2/mm=
+ap2.2.html">mmap2(2)</a> with a suitably adjusted value for
+       <i>offset</i>.
+</pre>
+<h2><a id=3D"STANDARDS" href=3D"https://man7.org/linux/man-pages/man2/mmap.=
+2.html#STANDARDS"></a>STANDARDS  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"htt=
+ps://man7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"=
+top-link">top</span></a></h2><pre>       POSIX.1-2024.
+</pre>
+<h2><a id=3D"HISTORY" href=3D"https://man7.org/linux/man-pages/man2/mmap.2.=
+html#HISTORY"></a>HISTORY  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https://m=
+an7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top-li=
+nk">top</span></a></h2><pre>       POSIX.1-2001, SVr4, 4.4BSD.
+
+       On POSIX systems on which <b>mmap</b>(), <a href=3D"https://man7.org=
+/linux/man-pages/man2/msync.2.html">msync(2)</a>, and <b>munmap</b>() are
+       available, <b>_POSIX_MAPPED_FILES </b>is defined in <i>&lt;unistd.h&=
+gt;</i> to a value
+       greater than 0.  (See also <a href=3D"https://man7.org/linux/man-pag=
+es/man3/sysconf.3.html">sysconf(3)</a>.)
+</pre>
+<h2><a id=3D"NOTES" href=3D"https://man7.org/linux/man-pages/man2/mmap.2.ht=
+ml#NOTES"></a>NOTES  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https://man7.or=
+g/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top-link">to=
+p</span></a></h2><pre>       Memory mapped by <b>mmap</b>() is preserved ac=
+ross <a href=3D"https://man7.org/linux/man-pages/man2/fork.2.html">fork(2)<=
+/a>, with the same
+       attributes.
+
+       A file is mapped in multiples of the page size.  For a file that
+       is not a multiple of the page size, the remaining bytes in the
+       partial page at the end of the mapping are zeroed when mapped, and
+       modifications to that region are not written out to the file.  The
+       effect of changing the size of the underlying file of a mapping on
+       the pages that correspond to added or removed regions of the file
+       is unspecified.
+
+       An application can determine which pages of a mapping are
+       currently resident in the buffer/page cache using <a href=3D"https:/=
+/man7.org/linux/man-pages/man2/mincore.2.html">mincore(2)</a>.
+
+   <b>Using MAP_FIXED safely</b>
+       The only safe use for <b>MAP_FIXED </b>is where the address range
+       specified by <i>addr</i> and <i>length</i> was previously reserved u=
+sing another
+       mapping; otherwise, the use of <b>MAP_FIXED </b>is hazardous because=
+ it
+       forcibly removes preexisting mappings, making it easy for a
+       multithreaded process to corrupt its own address space.
+
+       For example, suppose that thread A looks through <i>/proc/</i>pid<i>=
+/maps</i> in
+       order to locate an unused address range that it can map using
+       <b>MAP_FIXED</b>, while thread B simultaneously acquires part or all=
+ of
+       that same address range.  When thread A subsequently employs
+       <b>mmap(MAP_FIXED)</b>, it will effectively clobber the mapping that
+       thread B created.  In this scenario, thread B need not create a
+       mapping directly; simply making a library call that, internally,
+       uses <a href=3D"https://man7.org/linux/man-pages/man3/dlopen.3.html"=
+>dlopen(3)</a> to load some other shared library, will suffice.
+       The <a href=3D"https://man7.org/linux/man-pages/man3/dlopen.3.html">=
+dlopen(3)</a> call will map the library into the process's address
+       space.  Furthermore, almost any library call may be implemented in
+       a way that adds memory mappings to the address space, either with
+       this technique, or by simply allocating memory.  Examples include
+       <a href=3D"https://man7.org/linux/man-pages/man2/brk.2.html">brk(2)<=
+/a>, <a href=3D"https://man7.org/linux/man-pages/man3/malloc.3.html">malloc=
+(3)</a>, <a href=3D"https://man7.org/linux/man-pages/man3/pthread_create.3.=
+html">pthread_create(3)</a>, and the PAM libraries=20
+       =E2=9F=A8<a href=3D"http://www.linux-pam.org/">http://www.linux-pam.=
+org</a>=E2=9F=A9.
+
+       Since Linux 4.17, a multithreaded program can use the
+       <b>MAP_FIXED_NOREPLACE </b>flag to avoid the hazard described above =
+when
+       attempting to create a mapping at a fixed address that has not
+       been reserved by a preexisting mapping.
+
+   <b>Timestamps changes for file-backed mappings</b>
+       For file-backed mappings, the <i>st_atime</i> field for the mapped f=
+ile
+       may be updated at any time between the <b>mmap</b>() and the
+       corresponding unmapping; the first reference to a mapped page will
+       update the field if it has not been already.
+
+       The <i>st_ctime</i> and <i>st_mtime</i> field for a file mapped with=
+ <b>PROT_WRITE</b>
+       and <b>MAP_SHARED </b>will be updated after a write to the mapped re=
+gion,
+       and before a subsequent <a href=3D"https://man7.org/linux/man-pages/=
+man2/msync.2.html">msync(2)</a> with the <b>MS_SYNC </b>or <b>MS_ASYNC</b>
+       flag, if one occurs.
+
+   <b>Huge page (Huge TLB) mappings</b>
+       For mappings that employ huge pages, the requirements for the
+       arguments of <b>mmap</b>() and <b>munmap</b>() differ somewhat from =
+the
+       requirements for mappings that use the native system page size.
+
+       For <b>mmap</b>(), <i>offset</i> must be a multiple of the underlyin=
+g huge page
+       size.  The system automatically aligns <i>length</i> to be a multipl=
+e of
+       the underlying huge page size.
+
+       For <b>munmap</b>(), <i>addr</i>, and <i>length</i> must both be a m=
+ultiple of the
+       underlying huge page size.
+</pre>
+<h2><a id=3D"CAVEATS" href=3D"https://man7.org/linux/man-pages/man2/mmap.2.=
+html#CAVEATS"></a>CAVEATS  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https://m=
+an7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top-li=
+nk">top</span></a></h2><pre>       Unlike typical <a href=3D"https://man7.o=
+rg/linux/man-pages/man3/malloc.3.html">malloc(3)</a> implementations, <b>mm=
+ap</b>() does not prevent
+       creating objects larger than <b>PTRDIFF_MAX</b>.  Objects that are l=
+arger
+       than <b>PTRDIFF_MAX </b>only work in limited ways in C (in particula=
+r,
+       pointer subtraction results in undefined behavior if the result
+       would be bigger than <b>PTRDIFF_MAX</b>).  On top of that, GCC also
+       assumes that no object is bigger than <b>PTRDIFF_MAX</b>.  <b>PTRDIF=
+F_MAX </b>is
+       usually half of the address space size; so for 32-bit processes,
+       it is usually <b>0x7fffffff </b>(almost 2 GiB).
+</pre>
+<h2><a id=3D"BUGS" href=3D"https://man7.org/linux/man-pages/man2/mmap.2.htm=
+l#BUGS"></a>BUGS  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https://man7.org/l=
+inux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top-link">top</=
+span></a></h2><pre>       On Linux, there are no guarantees like those sugg=
+ested above under
+       <b>MAP_NORESERVE</b>.  By default, any process can be killed at any
+       moment when the system runs out of memory.
+
+       Before Linux 2.6.7, the <b>MAP_POPULATE </b>flag has effect only if =
+<i>prot</i>
+       is specified as <b>PROT_NONE</b>.
+
+       SUSv3 specifies that <b>mmap</b>() should fail if <i>length</i> is 0=
+.  However,
+       before Linux 2.6.12, <b>mmap</b>() succeeded in this case: no mappin=
+g was
+       created and the call returned <i>addr</i>.  Since Linux 2.6.12, <b>m=
+map</b>()
+       fails with the error <b>EINVAL </b>for this case.
+
+       POSIX specifies that the system shall always zero fill any partial
+       page at the end of the object and that system will never write any
+       modification of the object beyond its end.  On Linux, when you
+       write data to such partial page after the end of the object, the
+       data stays in the page cache even after the file is closed and
+       unmapped and even though the data is never written to the file
+       itself, subsequent mappings may see the modified content.  In some
+       cases, this could be fixed by calling <a href=3D"https://man7.org/li=
+nux/man-pages/man2/msync.2.html">msync(2)</a> before the unmap
+       takes place; however, this doesn't work on <a href=3D"https://man7.o=
+rg/linux/man-pages/man5/tmpfs.5.html">tmpfs(5)</a> (for example,
+       when using the POSIX shared memory interface documented in
+       <a href=3D"https://man7.org/linux/man-pages/man7/shm_overview.7.html=
+">shm_overview(7)</a>).
+</pre>
+<h2><a id=3D"EXAMPLES" href=3D"https://man7.org/linux/man-pages/man2/mmap.2=
+.html#EXAMPLES"></a>EXAMPLES  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https:=
+//man7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top=
+-link">top</span></a></h2><pre>       The following program prints part of =
+the file specified in its
+       first command-line argument to standard output.  The range of
+       bytes to be printed is specified via offset and length values in
+       the second and third command-line arguments.  The program creates
+       a memory mapping of the required pages of the file and then uses
+       <a href=3D"https://man7.org/linux/man-pages/man2/write.2.html">write=
+(2)</a> to output the desired bytes.
+
+   <b>Program source</b>
+       #include &lt;err.h&gt;
+       #include &lt;fcntl.h&gt;
+       #include &lt;stdio.h&gt;
+       #include &lt;stdlib.h&gt;
+       #include &lt;sys/mman.h&gt;
+       #include &lt;sys/stat.h&gt;
+       #include &lt;sys/types.h&gt;
+       #include &lt;unistd.h&gt;
+
+       int
+       main(int argc, char *argv[])
+       {
+           int          fd;
+           char         *addr;
+           off_t        offset, pa_offset;
+           size_t       length;
+           ssize_t      s;
+           struct stat  sb;
+
+           if (argc &lt; 3 || argc &gt; 4) {
+               fprintf(stderr, "%s file offset [length]\n", argv[0]);
+               exit(EXIT_FAILURE);
+           }
+
+           fd =3D open(argv[1], O_RDONLY);
+           if (fd =3D=3D -1)
+               err(EXIT_FAILURE, "open");
+
+           if (fstat(fd, &amp;sb) =3D=3D -1)           /* To obtain file si=
+ze */
+               err(EXIT_FAILURE, "fstat");
+
+           offset =3D atoi(argv[2]);
+           pa_offset =3D offset &amp; ~(sysconf(_SC_PAGE_SIZE) - 1);
+               /* offset for mmap() must be page aligned */
+
+           if (offset &gt;=3D sb.st_size) {
+               fprintf(stderr, "offset is past end of file\n");
+               exit(EXIT_FAILURE);
+           }
+
+           if (argc =3D=3D 4) {
+               length =3D atoi(argv[3]);
+               if (offset + length &gt; sb.st_size)
+                   length =3D sb.st_size - offset;
+                       /* Can't display bytes past end of file */
+
+           } else {    /* No length arg =3D=3D&gt; display to end of file *=
+/
+               length =3D sb.st_size - offset;
+           }
+
+           addr =3D mmap(NULL, length + offset - pa_offset, PROT_READ,
+                       MAP_PRIVATE, fd, pa_offset);
+           if (addr =3D=3D MAP_FAILED)
+               err(EXIT_FAILURE, "mmap");
+
+           s =3D write(STDOUT_FILENO, addr + offset - pa_offset, length);
+           if (s !=3D length) {
+               if (s =3D=3D -1)
+                   err(EXIT_FAILURE, "write");
+
+               fprintf(stderr, "partial write");
+               exit(EXIT_FAILURE);
+           }
+
+           munmap(addr, length + offset - pa_offset);
+           close(fd);
+
+           exit(EXIT_SUCCESS);
+       }
+</pre>
+<h2><a id=3D"SEE_ALSO" href=3D"https://man7.org/linux/man-pages/man2/mmap.2=
+.html#SEE_ALSO"></a>SEE ALSO  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https:=
+//man7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top=
+-link">top</span></a></h2><pre>       <a href=3D"https://man7.org/linux/man=
+-pages/man2/ftruncate.2.html">ftruncate(2)</a>, <a href=3D"https://man7.org=
+/linux/man-pages/man2/getpagesize.2.html">getpagesize(2)</a>, <a href=3D"ht=
+tps://man7.org/linux/man-pages/man2/memfd_create.2.html">memfd_create(2)</a=
+>, <a href=3D"https://man7.org/linux/man-pages/man2/mincore.2.html">mincore=
+(2)</a>,
+       <a href=3D"https://man7.org/linux/man-pages/man2/mlock.2.html">mlock=
+(2)</a>, <a href=3D"https://man7.org/linux/man-pages/man2/mmap2.2.html">mma=
+p2(2)</a>, <a href=3D"https://man7.org/linux/man-pages/man2/mprotect.2.html=
+">mprotect(2)</a>, <a href=3D"https://man7.org/linux/man-pages/man2/mremap.=
+2.html">mremap(2)</a>, <a href=3D"https://man7.org/linux/man-pages/man2/msy=
+nc.2.html">msync(2)</a>,
+       <a href=3D"https://man7.org/linux/man-pages/man2/remap_file_pages.2.=
+html">remap_file_pages(2)</a>, <a href=3D"https://man7.org/linux/man-pages/=
+man2/setrlimit.2.html">setrlimit(2)</a>, <a href=3D"https://man7.org/linux/=
+man-pages/man2/shmat.2.html">shmat(2)</a>, <a href=3D"https://man7.org/linu=
+x/man-pages/man2/userfaultfd.2.html">userfaultfd(2)</a>,
+       <a href=3D"https://man7.org/linux/man-pages/man3/shm_open.3.html">sh=
+m_open(3)</a>, <a href=3D"https://man7.org/linux/man-pages/man7/shm_overvie=
+w.7.html">shm_overview(7)</a>
+
+       The descriptions of the following files in <a href=3D"https://man7.o=
+rg/linux/man-pages/man5/proc.5.html">proc(5)</a>:
+       <i>/proc/</i>pid<i>/maps</i>, <i>/proc/</i>pid<i>/map_files</i>, and=
+ <i>/proc/</i>pid<i>/smaps</i>.
+
+       B.O. Gallmeister, POSIX.4, O'Reilly, pp. 128=E2=80=93129 and 389=E2=
+=80=93391.
+</pre>
+<h2><a id=3D"COLOPHON" href=3D"https://man7.org/linux/man-pages/man2/mmap.2=
+.html#COLOPHON"></a>COLOPHON  &nbsp; &nbsp; &nbsp; &nbsp; <a href=3D"https:=
+//man7.org/linux/man-pages/man2/mmap.2.html#top_of_page"><span class=3D"top=
+-link">top</span></a></h2><pre>       This page is part of the <i>man-pages=
+</i> (Linux kernel and C library
+       user-space interface documentation) project.  Information about
+       the project can be found at=20
+       =E2=9F=A8<a href=3D"https://www.kernel.org/doc/man-pages/">https://w=
+ww.kernel.org/doc/man-pages/</a>=E2=9F=A9.  If you have a bug report
+       for this manual page, see
+       =E2=9F=A8<a href=3D"https://git.kernel.org/pub/scm/docs/man-pages/ma=
+n-pages.git/tree/CONTRIBUTING">https://git.kernel.org/pub/scm/docs/man-page=
+s/man-pages.git/tree/CONTRIBUTING</a>=E2=9F=A9.
+       This page was obtained from the tarball man-pages-6.16.tar.gz
+       fetched from
+       =E2=9F=A8<a href=3D"https://mirrors.edge.kernel.org/pub/linux/docs/m=
+an-pages/">https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/</a>=E2=
+=9F=A9 on
+       2026-01-16.  If you discover any rendering problems in this HTML
+       version of the page, or you believe there is a better or more up-
+       to-date source for the page, or you have corrections or
+       improvements to the information in this COLOPHON (which is <i>not</i=
+>
+       part of the original manual page), send a mail to
+       man-pages@man7.org
+
+<span class=3D"footline">Linux man-pages 6.16            2025-10-29        =
+                <i>mmap</i>(2)</span>
+</pre>
+
+<hr class=3D"end-man-text">
+<p>Pages that refer to this page:
+    <a href=3D"https://man7.org/linux/man-pages/man1/memusage.1.html">memus=
+age(1)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/alloc_hugepages.2.html=
+">alloc_hugepages(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/arch_prctl.2.html">arc=
+h_prctl(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/clone.2.html">clone(2)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/execve.2.html">execve(=
+2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/fcntl_locking.2.html">=
+fcntl_locking(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/F_GET_SEALS.2const.htm=
+l">F_GET_SEALS(2const)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/fork.2.html">fork(2)</=
+a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/futex.2.html">futex(2)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/get_mempolicy.2.html">=
+get_mempolicy(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/getpagesize.2.html">ge=
+tpagesize(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/getrlimit.2.html">getr=
+limit(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/ioctl_userfaultfd.2.ht=
+ml">ioctl_userfaultfd(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/io_uring_register.2.ht=
+ml">io_uring_register(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/io_uring_setup.2.html"=
+>io_uring_setup(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/madvise.2.html">madvis=
+e(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/mbind.2.html">mbind(2)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/memfd_create.2.html">m=
+emfd_create(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/memfd_secret.2.html">m=
+emfd_secret(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/mincore.2.html">mincor=
+e(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/mlock.2.html">mlock(2)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/mmap2.2.html">mmap2(2)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/mprotect.2.html">mprot=
+ect(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/mremap.2.html">mremap(=
+2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/msync.2.html">msync(2)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/open.2.html">open(2)</=
+a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/perf_event_open.2.html=
+">perf_event_open(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/personality.2.html">pe=
+rsonality(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/posix_fadvise.2.html">=
+posix_fadvise(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/PR_SET_MM_ARG_START.2c=
+onst.html">PR_SET_MM_ARG_START(2const)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/PR_SET_MM_START_CODE.2=
+const.html">PR_SET_MM_START_CODE(2const)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/PR_SET_TAGGED_ADDR_CTR=
+L.2const.html">PR_SET_TAGGED_ADDR_CTRL(2const)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/readahead.2.html">read=
+ahead(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/remap_file_pages.2.htm=
+l">remap_file_pages(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/seccomp.2.html">seccom=
+p(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/sendfile.2.html">sendf=
+ile(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/set_mempolicy.2.html">=
+set_mempolicy(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/shmget.2.html">shmget(=
+2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/shmop.2.html">shmop(2)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/statx.2.html">statx(2)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/syscalls.2.html">sysca=
+lls(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/UFFDIO_API.2const.html=
+">UFFDIO_API(2const)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/uselib.2.html">uselib(=
+2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/userfaultfd.2.html">us=
+erfaultfd(2)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man2/vfork.2.html">vfork(2)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/avc_init.3.html">avc_i=
+nit(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/avc_open.3.html">avc_o=
+pen(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/cap_launch.3.html">cap=
+_launch(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/fopen.3.html">fopen(3)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/io_uring_queue_exit.3.=
+html">io_uring_queue_exit(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/io_uring_queue_init.3.=
+html">io_uring_queue_init(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/io_uring_queue_init_me=
+m.3.html">io_uring_queue_init_mem(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/io_uring_queue_init_pa=
+rams.3.html">io_uring_queue_init_params(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/io_uring_register_regi=
+on.3.html">io_uring_register_region(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/mallinfo.3.html">malli=
+nfo(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/malloc.3.html">malloc(=
+3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/malloc_stats.3.html">m=
+alloc_stats(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/mallopt.3.html">mallop=
+t(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/numa.3.html">numa(3)</=
+a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/off_t.3type.html">off_=
+t(3type)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/pthread_attr_setguards=
+ize.3.html">pthread_attr_setguardsize(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/pthread_attr_setstack.=
+3.html">pthread_attr_setstack(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/selinux_status_open.3.=
+html">selinux_status_open(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/sem_init.3.html">sem_i=
+nit(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man3/shm_open.3.html">shm_o=
+pen(3)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man5/core.5.html">core(5)</=
+a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man5/proc.5.html">proc(5)</=
+a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man5/proc_meminfo.5.html">p=
+roc_meminfo(5)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man5/proc_pid_map_files.5.h=
+tml">proc_pid_map_files(5)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man5/proc_pid_maps.5.html">=
+proc_pid_maps(5)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man5/proc_sys_kernel.5.html=
+">proc_sys_kernel(5)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man5/proc_sys_vm.5.html">pr=
+oc_sys_vm(5)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man5/systemd.exec.5.html">s=
+ystemd.exec(5)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man5/tmpfs.5.html">tmpfs(5)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man7/capabilities.7.html">c=
+apabilities(7)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man7/fanotify.7.html">fanot=
+ify(7)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man7/futex.7.html">futex(7)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man7/inode.7.html">inode(7)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man7/inotify.7.html">inotif=
+y(7)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man7/io_uring.7.html">io_ur=
+ing(7)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man7/pkeys.7.html">pkeys(7)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man7/shm_overview.7.html">s=
+hm_overview(7)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man7/spufs.7.html">spufs(7)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man8/ld.so.8.html">ld.so(8)=
+</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man8/netsniff-ng.8.html">ne=
+tsniff-ng(8)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man8/setarch.8.html">setarc=
+h(8)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man8/trafgen.8.html">trafge=
+n(8)</a>,&nbsp;
+    <a href=3D"https://man7.org/linux/man-pages/man8/xfs_io.8.html">xfs_io(=
+8)</a>
+</p>
+<hr>
+
+=20
+<hr class=3D"start-footer">
+
+<div class=3D"footer">
+
+<table class=3D"colophon-table">
+    <tbody><tr>
+    <td class=3D"pub-info">
+        <p>
+            HTML rendering created 2026-01-16
+            by <a href=3D"https://man7.org/mtk/index.html">Michael Kerrisk<=
+/a>,
+            author of
+            <a href=3D"https://man7.org/tlpi/"><em>The Linux Programming In=
+terface</em></a>.
+        </p>
+        <p>
+            For details of in-depth
+            <strong>Linux/UNIX system programming training courses</strong>
+            that I teach, look <a href=3D"https://man7.org/training/">here<=
+/a>.
+        </p>
+        <p>
+            Hosting by <a href=3D"https://www.jambit.com/index_en.html">jam=
+bit GmbH</a>.
+        </p>
+    </td>
+    <td class=3D"colophon-divider">
+    </td>
+    <td class=3D"tlpi-cover">
+        <a href=3D"https://man7.org/tlpi/"><img src=3D"https://man7.org/tlp=
+i/cover/TLPI-front-cover-vsmall.png" alt=3D"Cover of TLPI"></a>
+    </td>
+    </tr>
+</tbody></table>
+
+</div>
+
+<hr class=3D"end-footer">
+
+
+
+<!--BEGIN-SITETRACKING-->
+<!-- SITETRACKING.man7.org_linux_man-pages -->
+
+<!-- Default Statcounter code for man7.org/linux/man-pages
+http://www.man7.org/linux/man-pages -->
+
+
+
+<!-- End of Statcounter Code -->
+
+
+
+<!-- Start of Google Analytics Code -->
+
+
+
+<!-- End of Google Analytics Code -->
+
+<!--END-SITETRACKING-->
+
+
+
+<iframe frameborder=3D"0" scrolling=3D"no" style=3D"background-color: trans=
+parent; border: 0px; display: none;"></iframe><div id=3D"GOOGLE_INPUT_CHEXT=
+_FLAG" input=3D"" input_stat=3D"{&quot;tlang&quot;:true,&quot;tsbc&quot;:tr=
+ue,&quot;pun&quot;:true,&quot;mk&quot;:true,&quot;ss&quot;:true}" style=3D"=
+display: none;"></div></body></html>
+------MultipartBoundary--u0W7jpJyk8oPj2dusy5nTLwzwWhxwNUETBONPB5Fd1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://man7.org/tlpi/cover/TLPI-front-cover-vsmall.png
+
+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
+hw6dSzL09fX95je/+T48AQihSqWSZXn9+vUD7/TYY489++yzTz755GuvvTZgfM6zbCn2gCCI83jF
+NWvWrF27duD0rbfeWrNmjdVqTXVeAMBrr72G43hbW9t1110XDAbPvff111+PRCKiKP74xz/WarUE
+QZz389tstltuuQUAUFNT89prr32TMYQQrlixoqqqatKkSclk8tyic81UR0fH6tWrnU7nYJqslBI4
+ePDgyZMnUw5ASgmYzWaEEI7jc+fORQjxPA8AGDly5Ln3pkYZQujYsWMAgCeffHKgSK1W2+32ASXQ
+2dl533334TieKlUUBcfxf7R+KSWQKr3//vsBAHv37n3//ffPVQKPPvrotm3bAABPP/106qfVarX/
+VAnk5uamHkeSZMoIp5SAw+HAMCylRgZUfOrfvyC6dUAGdOuOHTsAAC0tLQih559/HgCwatWqtra2
+5ubmG2+8EQDwzDPPpGBKZSTec889DQ0NHR0dFEWdC2tjY2PK7i9evBghFI/HAQBtbW2px02dOpUk
+yXNhffTRR1PDVpblf4QVIURRFI7jL7/88neB9d133039eClYd+/eDQDIyMj46KOPurq6Xn/99cGH
+NeVgnXdx1apVAz3L4XBYrdbU8fPPP09RVOoVWZZNuTUDctttt53bAWfNmjXgYKVeIAWQ1+u94YYb
+zn1oU1NTit9JEbipEQMAWLRoEULozTffHHCwAAAPPvggQmjEiBEDVj7lgQy07/F4EEJjx44tLS0d
+eMSoUaMAAO3t7anTvXv3FhQUDLyqWq1ubm7+V2H976kWhNB5zPG3iNvtRghlZGT809Kuri6CIBwO
+x6UfJiWTyba2toKCgvMI5e9ItRDfxWR99xbT09O/pTQnJ+eHEn3SNF1aWnqZE7hMtVyG9bL8z+Tb
+dOuGDRtCodCtt94KAHj55ZfD4fAvfvGLVFF7e/snn3xy7733PvPMM21tbefeVVxcfO211z700EMD
+7uewYcPuvvvu6urq9957LzWnMnz48P/4j/8AAHR3dz/11FMD944ZM+bmm28GAGzevLm1tfXee+89
+t+Xnn39+3759Ho+nsrJy7dq1DofjnnvukWU5VSpJ0ksvvfQtqSHfq3yLgzV37tyioqLUcXZ29gDz
+hBDavn17ys365S9/uWDBglRsOmfOnAULFjz00EMpbnDatGkLFixYsGDBI488ghBat24dhmFLly5N
+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
+
+------MultipartBoundary--u0W7jpJyk8oPj2dusy5nTLwzwWhxwNUETBONPB5Fd1----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://man7.org/linux/man-pages/style.css
+
+@charset "utf-8";
+
+body { background-color: rgb(255, 255, 255); }
+
+b { color: rgb(80, 32, 0); }
+
+i { color: rgb(0, 96, 0); }
+
+h2 { color: rgb(160, 0, 0); padding-top: 15px; font-size: 100%; font-weight=
+: bold; }
+
+h3 { color: rgb(96, 0, 0); font-size: 100%; padding-top: 10px; padding-left=
+: 20px; }
+
+table.sec-table { width: 100%; border: 1px; }
+
+table.nav-table { width: 100%; border-spacing: 0px; border-width: 0px; bord=
+er-collapse: collapse; border-top-style: initial; border-top-color: initial=
+; border-bottom-style: initial; border-bottom-color: initial; padding-top: =
+0px; padding-bottom: 0px; }
+
+td.nav-cell { padding: 0px; border-width: 0px; }
+
+table.colophon-table { width: 100%; }
+
+td.search-box { text-align: left; }
+
+td.training-cell { text-align: right; padding: 0px; border-width: 0px; }
+
+td.pub-info { text-align: left; }
+
+td.tlpi-cover { text-align: right; }
+
+p.page-copyright { margin-top: 6px; margin-bottom: 6px; }
+
+fieldset.man-search { border: 0px; margin-top: 0px; margin-bottom: 0px; }
+
+span.headline { font-weight: bold; }
+
+span.footline { font-weight: bold; }
+
+p.page-xlinks { margin-left: 10px; margin-top: 6px; margin-bottom: 6px; bac=
+kground-color: rgb(255, 255, 192); padding: 5px; border-color: red; border-=
+style: solid; display: inline-block; border-width: 1px; }
+
+p.section-dir { margin-top: 6px; margin-bottom: 6px; padding: 5px; border-w=
+idth: 1px; }
+
+hr.end-xlinks { border: 0px; margin-top: 0px; margin-bottom: 0px; }
+
+span.top-link { font-size: 70%; }
+
+hr.end-man-text { height: 0px; border-color: rgb(255, 255, 255); width: 100=
+%; }
+
+pre { font-family: monospace, courier; }
+
+#a:link { text-decoration: none; color: blue; }
+
+#a:visited { text-decoration: none; color: blue; }
+
+a:hover { text-decoration: underline; color: red; }
+
+a:active { text-decoration: underline; background-color: rgb(255, 208, 208)=
+; }
+
+.footer p { margin-top: 0.7em; margin-bottom: 0.7em; }
+------MultipartBoundary--u0W7jpJyk8oPj2dusy5nTLwzwWhxwNUETBONPB5Fd1----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://man7.org/style.css
+
+@charset "utf-8";
+
+html, body { background-color: rgb(252, 252, 252); font-family: sans-serif;=
+ font-size: 100%; color: rgb(24, 24, 24); }
+
+body { margin-top: 0px; margin-left: 0px; margin-right: 0px; }
+
+h1, h2, h3, h4, h5, h5 { font-family: helvetica, sans-serif; font-weight: n=
+ormal; margin-left: 8px; margin-right: 8px; color: rgb(0, 128, 0); margin-t=
+op: 25px; }
+
+h1 { }
+
+h2 { }
+
+h3 { color: rgb(0, 96, 0); font-style: italic; }
+
+p { margin-left: 8px; margin-right: 8px; margin-bottom: 0.5em; }
+
+p { max-width: 750px; }
+
+table { max-width: 750px; }
+
+hr { max-width: 750px; margin: 8px; }
+
+.note-quote p { max-width: 650px; margin-left: 50px; }
+
+.review-quote blockquote { max-width: 650px; margin-left: 80px; }
+
+.review-quote p { border: 1px dashed rgb(250, 100, 100); background-color: =
+rgb(230, 255, 230); padding: 10px; margin-top: 30px; max-width: 730px; }
+
+li { max-width: 710px; }
+
+p.copyright-text { margin-top: 0px; margin-bottom: 0px; }
+
+pre { margin-left: 8px; }
+
+li { margin-left: 8px; margin-right: 8px; }
+
+ul.list-wide li { margin-bottom: 12px; }
+
+a { color: rgb(16, 48, 255); text-decoration: none; }
+
+a:visited { color: rgb(64, 128, 221); }
+
+a:hover, a:focus, a:active { color: red; background-color: rgb(255, 224, 22=
+4); text-decoration: underline; }
+
+a.func { color: red; text-decoration: none; }
+
+a.manpage { color: red; text-decoration: none; }
+
+a.file { color: red; text-decoration: none; }
+
+div.lmargin { margin-left: 8px; }
+
+pre.code { background-color: rgb(244, 240, 244); font-size: 110%; margin-le=
+ft: 0px; margin-right: 60px; padding: 5px 8px; border: 1px solid rgb(170, 2=
+21, 170); }
+
+div.nav-bar { padding: 3px 8px; background-color: rgb(232, 232, 232); }
+
+div.footer { padding: 3px 8px; background-color: rgb(232, 232, 232); }
+
+hr.nav-end { height: 0px; margin-top: 0px; color: rgb(0, 0, 255); border-co=
+lor: rgb(255, 255, 255); width: 100%; }
+
+hr.start-footer, hr.end-footer { height: 0px; margin-top: 0px; margin-botto=
+m: 0px; color: rgb(0, 0, 255); border-color: rgb(255, 255, 255); width: 100=
+%; }
+
+p.indented { margin-left: 100px; }
+
+p.training-text { margin-top: 0px; margin-left: 0px; margin-bottom: 0px; fo=
+nt-weight: bold; font-size: 15px; }
+
+strong, span.hl { font-weight: bold; color: rgb(48, 48, 48); }
+
+a.training-link:hover, a.training-link:visited, a.training-link:link, a.tra=
+ining-link:active { color: rgb(0, 128, 0); }
+
+a.training-link:hover, a.training-link:active { text-decoration: underline;=
+ background-color: rgb(255, 208, 208); }
+
+p.nav-text { margin-top: 0px; margin-left: 0px; margin-bottom: 0px; }
+
+p.nav-text, p.copyright-text { font-size: 15px; }
+
+.footer p { margin-top: 0px; margin-bottom: 0px; }
+
+.cmd { font-family: monospace; color: darkgreen; }
+
+.code { color: darkgreen; }
+
+.const { font-family: monospace; color: rgb(51, 0, 0); }
+
+.email { font-family: monospace; color: rgb(0, 0, 128); }
+
+.envvar { font-family: monospace; color: rgb(51, 0, 0); }
+
+.func { font-family: serif; font-style: italic; color: rgb(51, 0, 0); }
+
+.man-page { font-family: serif; font-style: italic; color: darkblue; }
+
+.pathname { font-family: monospace; color: darkgreen; }
+
+.url { font-family: serif; font-style: italic; color: rgb(68, 0, 100); }
+
+.var { font-family: serif; font-style: italic; color: rgb(51, 0, 0); }
+
+.t-del { text-decoration: line-through; border-bottom: 3px double rgb(255, =
+0, 0); background-color: rgb(255, 204, 204); }
+
+.t-add { border-bottom: 3px double rgb(0, 255, 0); background-color: rgb(20=
+4, 255, 204); }
+
+hr.errata-expl { border: 1px solid; color: rgb(0, 102, 0); height: 2px; wid=
+th: 90%; }
+
+hr.prod-comment { border: 0.3px solid; color: rgb(64, 64, 170); height: 0px=
+; width: 90%; }
+------MultipartBoundary--u0W7jpJyk8oPj2dusy5nTLwzwWhxwNUETBONPB5Fd1----
+Content-Type: text/html
+Content-ID: <frame-D4B061F796E30904A1DA4D24815703BB@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css" href=3D"cid:css-c391cb=
+9b-e69c-4b7e-9702-0c61a2d9d9e1@mhtml.blink" /></head><body></body></html>
+------MultipartBoundary--u0W7jpJyk8oPj2dusy5nTLwzwWhxwNUETBONPB5Fd1----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-c391cb9b-e69c-4b7e-9702-0c61a2d9d9e1@mhtml.blink
+
+@charset "utf-8";
+
+html body { border: 0px; margin: 0px; padding: 0px; }
+
+html, body { overflow: hidden; }
+
+.ita-kd-img { background-image: url("https://www.gstatic.com/inputtools/ima=
+ges/ita_sprite8.png"); background-size: 850px 250px; }
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  .ita-kd-img { background-image: url("https://www.gstatic.com/inputtools/i=
+mages/ita_sprite8_2x.png"); }
+}
+
+@media screen and (-ms-high-contrast:white-on-black) {
+  .ita-kd-img { background-image: url("https://www.gstatic.com/inputtools/i=
+mages/ita_sprite_grey8.png"); }
+}
+
+@media screen and (-ms-high-contrast:white-on-black) and (-webkit-min-devic=
+e-pixel-ratio: 1.5), screen and (-ms-high-contrast:white-on-black) and (min=
+-resolution: 144dpi) {
+  .ita-kd-img { background-image: url("https://www.gstatic.com/inputtools/i=
+mages/ita_sprite_grey8_2x.png"); }
+}
+
+.ita-ff-black-enabled .ita-kd-img { background-image: url("https://www.gsta=
+tic.com/inputtools/images/ita_sprite_grey8.png"); }
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  .ita-ff-black-enabled .ita-kd-img { background-image: url("https://www.gs=
+tatic.com/inputtools/images/ita_sprite_grey8_2x.png"); }
+}
+
+.ita-ppe-can, .ita-ppe-ant, .ita-ppe-can, .ita-ppe-can-list, .ita-ppe-tbl, =
+.ita-ppe-td, .ita-ppe-div, .ita-ppe-uds { font-size: inherit; text-align: i=
+nherit; background-color: inherit; }
+
+.ita-ppe-ant { color: rgb(169, 169, 169); font-size: 14px; }
+
+.ita-ppe-box { position: absolute; display: block; background-color: white;=
+ color: black; cursor: move; border: 1px solid rgb(205, 205, 205); padding:=
+ 6px; font-size: 16px; box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index=
+: 2147483644; text-align: justify; overflow: hidden; }
+
+.ita-ppe-box.ita-ppe-box-mobile { box-shadow: 0px 0px; display: inline-bloc=
+k; left: 0px; padding: 6px 0px; width: 100%; }
+
+.ita-ppe-can { margin: 2px; padding: 4px; line-height: 16px; height: 18px; =
+}
+
+.ita-ppe-can-list { cursor: pointer; display: block; min-height: 1.5em; mar=
+gin: 6px 0px 0px; padding: 0px; white-space: nowrap; }
+
+.ita-ppe-box-mobile .ita-ppe-can-list { overflow-x: auto; max-width: 100%; =
+margin: 6px 0px -100px; padding: 6px 0px 106px; }
+
+.ita-ppe-cur { display: inline-block; width: 2px; height: 18px; background-=
+color: rgb(84, 189, 240); overflow: hidden; text-decoration: blink; float: =
+none; }
+
+.ita-ppe-edit { height: 20px; line-height: 20px; font-size: 18px; text-alig=
+n: inherit; background-color: inherit; padding: 0px 0px 6px; outline: none;=
+ border: none; white-space: nowrap; font-family: Arial, sans-serif; cursor:=
+ text; }
+
+.ita-ppe-div { white-space: nowrap; }
+
+.ita-ppe-box-mobile > .ita-ppe-div { font-size: 24px; overflow-x: hidden; }
+
+.ita-ppe-logo { background-image: url("https://ssl.gstatic.com/inputtools/i=
+mages/search_button_normal.png"); background-position: -197px 3px; width: 4=
+8px; height: 20px; margin: 2px; padding: 0px; float: right; }
+
+.ita-ppe-pgd, .ita-ppe-pgu { display: inline-block; margin: 6px -1px 0px 0p=
+x; width: 22px; opacity: 0.55; border: 1px solid gray; height: 18px; border=
+-radius: 2px; transition: 0.218s; background-color: rgb(245, 245, 245); cur=
+sor: default; }
+
+.ita-ppe-navi-box { padding-left: 6px; white-space: nowrap; }
+
+.ita-ppe-pgd { background-position: -816px -66px; display: inline-block; }
+
+.ita-ppe-pgu { background-position: -616px -116px; display: inline-block; }
+
+.ita-ppe-tbl { width: 100%; }
+
+.ita-ppe-tbl, .ita-ppe-td { border: none; padding: 0px; margin: 0px; }
+
+.ita-ppe-uds { border-bottom: 2px solid; margin: 0px 1px; }
+
+.ita-ppe-hlt { color: rgb(34, 34, 34); background-color: rgb(241, 241, 241)=
+; }
+
+.ita-ppe-hov { opacity: 0.9; }
+
+.ita-ppe-dis { opacity: 0.333; }
+
+.ita-ppe-dis-text { color: rgb(119, 119, 119); }
+
+.ita-isv { position: absolute; border: 0px; margin: 0px; padding: 0px; back=
+ground-repeat: repeat-x; }
+
+.ita-isv-grey { color: grey; margin-top: 0px; }
+
+.ita-isv-red { color: red; margin-top: -2px; background-image: url("https:/=
+/fonts.gstatic.com/s/i/short-term/release/googlesymbols/keyboard_arrow_down=
+/default/24px.svg"); }
+
+@media screen and (-ms-high-contrast:white-on-black) {
+  .ita-ppe-hlt { font-weight: bold; border: 1px solid; }
+}
+
+.ita-ff-black-enabled .ita-ppe-hlt { font-weight: bold; border: 1px solid; =
+}
+
+.ita-hwt-ime { overflow: hidden; width: 425px; height: 297px; background: r=
+gb(255, 255, 255); touch-action: pinch-zoom; }
+
+.ita-hwt-ime-st { position: fixed; opacity: 0.5; box-shadow: rgba(0, 0, 0, =
+0.2) 0px 4px 16px; border: 1px solid rgb(204, 204, 204); transition: opacit=
+y 0.1s linear; z-index: 2147483640; }
+
+.ita-hwt-ime-full { width: auto !important; left: 2px !important; right: 2p=
+x !important; }
+
+.ita-hwt-ime-opaque, .ita-hwt-ime-init-opaque { opacity: 0.99 !important; }
+
+.ita-hwt-ime-hover { opacity: 0.99; transition: opacity 0.1s linear; }
+
+canvas.ita-hwt-canvas { cursor: url("https://fonts.gstatic.com/s/i/short-te=
+rm/release/googlesymbols/stylus/default/24px.svg") 0 24, auto; vertical-ali=
+gn: bottom; touch-action: none; }
+
+.ita-hwt-grip { position: absolute; cursor: move; top: 0px; }
+
+.ita-hwt-ltr .ita-hwt-grip { left: 0px; }
+
+.ita-hwt-rtl .ita-hwt-grip { right: 0px; }
+
+.ita-hwt-close { background-position: -660px -10px; background-color: white=
+; width: 30px; height: 30px; position: absolute; top: 0px; cursor: pointer;=
+ }
+
+.ita-hwt-ltr .ita-hwt-close { right: 0px; }
+
+.ita-hwt-rtl .ita-hwt-close { left: 0px; }
+
+.ita-hwt-candidates { border-top: 1px solid rgb(204, 204, 204); background:=
+ rgb(255, 255, 255); text-align: left; white-space: nowrap; }
+
+.ita-hwt-candidate { display: inline-block; white-space: nowrap; height: 32=
+px; line-height: 24px; padding: 6px 18px 3px; border-right: 1px solid rgb(2=
+04, 204, 204); font-family: arial, verdana, sans-serif; font-size: small; c=
+olor: rgb(34, 34, 34); cursor: pointer; }
+
+.ita-hwt-selected { color: rgb(68, 68, 68); }
+
+.ita-hwt-candidate-hover { background-color: rgb(240, 240, 240); color: rgb=
+(68, 68, 68); }
+
+.ita-hwt-candidate:active { background-color: rgb(224, 224, 224); color: rg=
+b(68, 68, 68); }
+
+.ita-hwt-disabled { opacity: 0.5; }
+
+.ita-hwt-buttons { background-color: rgb(240, 240, 240); height: 60px; bord=
+er-top: 1px solid rgb(204, 204, 204); }
+
+.ita-hwt-button { display: inline-block; vertical-align: top; }
+
+.ita-hwt-backspace { margin: 10px; width: 24px !important; height: 40px !im=
+portant; }
+
+.ita-hwt-backspace-img { background-position: -714px -118px; width: 18px; h=
+eight: 14px; margin: 13px 4px; }
+
+.ita-hwt-space { margin: 10px 0px; height: 24px; width: 296px; line-height:=
+ 24px; font-family: arial, verdana, sans-serif; font-size: small; text-alig=
+n: center; padding: 8px 0px !important; }
+
+.ita-hwt-enter { margin: 10px; width: 24px !important; height: 40px !import=
+ant; }
+
+.ita-hwt-enter-img { margin: 13px 4px; }
+
+.ita-hwt-language { position: absolute; right: 0px; bottom: 0px; width: aut=
+o; height: auto; font-size: small; color: rgb(117, 144, 212); }
+
+.ita-hwt-clear-time { position: absolute; right: 30px; bottom: 0px; width: =
+auto; height: auto; font-size: small; color: rgb(117, 144, 212); cursor: po=
+inter; }
+
+.ita-hwt-insert-time { position: absolute; right: 60px; bottom: 0px; width:=
+ auto; height: auto; font-size: small; color: rgb(117, 144, 212); cursor: p=
+ointer; }
+
+.ita-hwt-enter-img-dark { background-position: -768px -120px; width: 14px; =
+height: 10px; }
+
+.ita-hwt-enter-img-white { background-position: -818px -120px; width: 14px;=
+ height: 10px; }
+
+.ita-hwt-grip { background-position: -700px -160px; width: 47px; height: 29=
+px; }
+
+.ita-hwt-grip-hover { background-position: -650px -160px; }
+
+.ita-hwt-grip:active { background-position: -600px -160px; }
+
+.ita-hwt-jfk { border-radius: 2px; cursor: default; font-size: 11px; font-w=
+eight: bold; text-align: center; white-space: nowrap; padding: 0px 8px; }
+
+.ita-hwt-jfk-hover { box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 1px; }
+
+.ita-hwt-jfk-standard { box-shadow: none; background-color: rgb(245, 245, 2=
+45); background-image: linear-gradient(rgb(245, 245, 245), rgb(241, 241, 24=
+1)); color: rgb(68, 68, 68); border: 1px solid rgba(0, 0, 0, 0.1); }
+
+.ita-hwt-jfk-standard.ita-hwt-jfk-hover { box-shadow: none; background-colo=
+r: rgb(248, 248, 248); background-image: linear-gradient(rgb(248, 248, 248)=
+, rgb(241, 241, 241)); border: 1px solid rgb(198, 198, 198); color: rgb(51,=
+ 51, 51); }
+
+.ita-hwt-jfk-action { box-shadow: none; background-color: rgb(77, 144, 254)=
+; background-image: linear-gradient(rgb(77, 144, 254), rgb(71, 135, 237)); =
+border: 1px solid rgb(48, 121, 237); color: rgb(255, 255, 255); }
+
+.ita-hwt-jfk-action.ita-hwt-jfk-hover { box-shadow: none; background-color:=
+ rgb(53, 122, 232); background-image: linear-gradient(rgb(77, 144, 254), rg=
+b(53, 122, 232)); border: 1px solid rgb(47, 91, 183); }
+
+.ita-hwt-butterbar { position: absolute; left: 0px; bottom: 100px; border-r=
+adius: 2px; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px; border-style: solid=
+; border-width: 0px; font-size: 11px; height: 0px; opacity: 0; visibility: =
+hidden; overflow: hidden; padding: 0px; margin: 10px; text-align: center; b=
+ackground-color: rgb(249, 237, 190); border-color: rgb(240, 195, 109); colo=
+r: rgb(51, 51, 51); }
+
+.ita-hwt-butterbar.shown { transition: opacity 0.218s; border-width: 1px; h=
+eight: 14px; opacity: 1; visibility: visible; padding: 2px 16px; }
+
+@media screen and (-ms-high-contrast:white-on-black) {
+  .ita-hwt-candidate-hover, .ita-hwt-candidate:active { font-weight: bold; =
+border: 2px solid; }
+  .ita-hwt-jfk-action { outline: solid 2px; }
+  .ita-hwt-jfk { background-image: none; }
+  .ita-hwt-jfk-standard.ita-hwt-jfk-hover, .ita-hwt-jfk-action.ita-hwt-jfk-=
+hover { background-image: none; outline: solid 2px; }
+}
+
+.ita-ff-black-enabled .ita-hwt-candidate-hover, .ita-ff-black-enabled .ita-=
+hwt-candidate:active { font-weight: bold; border: 2px solid; }
+
+.ita-ff-black-enabled .ita-hwt-jfk-action { outline: solid 2px; }
+
+.ita-ff-black-enabled .ita-hwt-jfk { background-image: none; }
+
+.ita-ff-black-enabled .ita-hwt-jfk-standard.ita-hwt-jfk-hover, .ita-ff-blac=
+k-enabled .ita-hwt-jfk-action.ita-hwt-jfk-hover { background-image: none; o=
+utline: solid 2px; }
+
+.vk-box, .vk-btn, .vk-btn-n, .vk-cap, .vk-cap-i, .vk-t, .vk-t-btn { display=
+: inline-block; user-select: none; }
+
+.vk-box { height: auto; padding: 10px; background-color: white; border: 1px=
+ solid rgba(0, 0, 0, 0.3); z-index: 2147483644; font-family: arial, sans-se=
+rif; font-size: 14px; position: fixed; box-shadow: rgba(0, 0, 0, 0.2) 0px 4=
+px 16px; touch-action: pinch-zoom; }
+
+.vk-box-blur { opacity: 0.5; transition: opacity 0.1s linear; }
+
+.vk-box.vk-min { padding: 2px; }
+
+.vk-box.vk-sf-ie { border: 1px solid rgb(204, 204, 204); }
+
+.vk-btn { border: 1px solid rgba(0, 0, 0, 0.1); width: 29px; height: 29px; =
+margin: 2px; text-align: center; vertical-align: middle; position: relative=
+; padding: 1px; min-width: 0px; max-width: 500px; min-height: 0px; max-heig=
+ht: 50px; color: rgb(68, 68, 68); background-color: rgb(245, 245, 245); bac=
+kground-image: linear-gradient(rgb(245, 245, 245), rgb(241, 241, 241)); bor=
+der-radius: 2px; }
+
+.vk-btn.vk-sf-h { border-color: rgb(198, 198, 198); color: rgb(34, 34, 34);=
+ background-color: rgb(248, 248, 248); background-image: linear-gradient(rg=
+b(248, 248, 248), rgb(241, 241, 241)); box-shadow: rgba(0, 0, 0, 0.1) 0px 1=
+px 1px; }
+
+.vk-btn.vk-sf-a { border-color: rgb(198, 198, 198); color: rgb(51, 51, 51);=
+ background-color: rgb(246, 246, 246); background-image: linear-gradient(rg=
+b(246, 246, 246), rgb(241, 241, 241)); box-shadow: rgba(0, 0, 0, 0.1) 0px 1=
+px 2px inset; }
+
+.vk-btn.vk-sf-s { border-color: rgb(204, 204, 204); color: rgb(51, 51, 51);=
+ background-color: rgb(238, 238, 238); background-image: linear-gradient(rg=
+b(238, 238, 238), rgb(224, 224, 224)); box-shadow: rgba(0, 0, 0, 0.1) 0px 1=
+px 2px inset; }
+
+.vk-cap, .vk-t { font-size: 14px; font-family: arial, sans-serif; font-weig=
+ht: normal; line-height: 25px; }
+
+.vk-cap { cursor: default; }
+
+.vk-cap.vk-sf-b, .vk-t-btn { background-repeat: no-repeat; }
+
+.vk-cap.vk-sf-b { width: 22px; height: 17px; opacity: 0.667; }
+
+.vk-sf-ff2 .vk-cap.vk-sf-b { display: block; position: relative; left: 6px;=
+ top: 0px; }
+
+.vk-cap.vk-sf-b.vk-sf-h { opacity: 0.9; }
+
+.vk-cap.vk-sf-b.vk-sf-c8 { background-position: -714px -16px; }
+
+.vk-cap.vk-sf-b.vk-sf-c20 { background-position: -614px -66px; }
+
+.vk-cap.vk-sf-b.vk-sf-c16 { background-position: -814px -16px; }
+
+.vk-cap.vk-sf-c273 { font-size: 14px; }
+
+.vk-cap-i { border: none; width: 20px; height: 20px; }
+
+.vk-t { height: 24px; cursor: move; padding: 0px 3px; color: rgb(136, 136, =
+136); display: inline-block; overflow: hidden; width: 100%; }
+
+.vk-t.vk-min { width: auto; }
+
+.vk-t-btns { margin: 0px; padding: 0px; position: absolute; display: inline=
+-block; white-space: nowrap; top: 0px; }
+
+.vk-t-btns.vk-min { position: relative; }
+
+.vk-t-btn { margin: 0px; opacity: 0.4; height: 14px !important; width: 14px=
+ !important; }
+
+.vk-t-btn.vk-sf-hp { background-position: -670px -70px; }
+
+.vk-t-btn.vk-sf-min { background-position: -720px -70px; }
+
+.vk-t-btn.vk-sf-max { background-position: -770px -70px; }
+
+.vk-t-btn.vk-sf-cl { background-position: -670px -20px; }
+
+.vk-t-btn.vk-sf-th { opacity: 1; }
+
+.vk-t-btn-o { padding: 13px 4px 8px; cursor: default; display: inline-block=
+; position: relative; }
+
+.vk-t-btn-o.vk-min { padding: 2px; }
+
+.vk-t-btn-o.vk-sf-hp { cursor: pointer; }
+
+.vk-ea-l { margin-right: 32px; }
+
+.vk-ea-r { margin-left: 32px; }
+
+.vk-ss { margin: 0px 5px; }
+
+.vk-l-i { pointer-events: none; text-decoration: none; font-weight: bold; c=
+olor: rgb(0, 0, 0) !important; }
+
+.vk-l-a { color: rgb(0, 0, 255); }
+
+@media screen and (-ms-high-contrast:white-on-black) {
+  .vk-btn, .vk-btn.vk-sf-a, .vk-btn.vk-sf-h, .vk-btn.vk-sf-s { background-i=
+mage: none; background-color: black; }
+  .vk-cap.vk-sf-b { opacity: 1; }
+  .vk-btn.vk-sf-a, .vk-btn.vk-sf-h, .vk-btn.vk-sf-s { border-width: 2px; }
+  .vk-btn.vk-sf-a .vk-cap, .vk-btn.vk-sf-h .vk-cap, .vk-btn.vk-sf-s .vk-cap=
+ { font-weight: bold; }
+}
+
+.ita-ff-black-enabled .vk-btn, .ita-ff-black-enabled .vk-btn.vk-sf-a, .ita-=
+ff-black-enabled .vk-btn.vk-sf-h, .ita-ff-black-enabled .vk-btn.vk-sf-s { b=
+ackground-image: none; background-color: black; }
+
+.ita-ff-black-enabled .vk-cap.vk-sf-b { opacity: 1; }
+
+.ita-ff-black-enabled .vk-btn.vk-sf-a, .ita-ff-black-enabled .vk-btn.vk-sf-=
+h, .ita-ff-black-enabled .vk-btn.vk-sf-s { border-width: 2px; }
+
+.ita-ff-black-enabled .vk-btn.vk-sf-a .vk-cap, .ita-ff-black-enabled .vk-bt=
+n.vk-sf-h .vk-cap, .ita-ff-black-enabled .vk-btn.vk-sf-s .vk-cap { font-wei=
+ght: bold; }
+
+.ita-kd-btn-zh { background-position: -514px -18px; }
+
+.ita-kd-btn-en { background-position: -564px -18px; }
+
+.ita-kd-btn-dbc { background-position: -514px -68px; }
+
+.ita-kd-btn-sbc { background-position: -564px -68px; }
+
+.ita-kd-btn-zh_pun { background-position: -514px -118px; }
+
+.ita-kd-btn-en_pun { background-position: -564px -118px; }
+
+.ita-kd-arrow { background-position: -620px -218px; width: 12px; height: 15=
+px; }
+
+.ita-kd-floating-bar-icon { background-position: -670px -116px; width: 12px=
+; height: 15px; }
+
+.ita-kd-icon-button.ita-kd-left { border-radius: 2px 0px 0px 2px; }
+
+.ita-kd-icon-button.ita-kd-right, .ita-kd-icon-button.ita-kd-mid { margin-l=
+eft: -1px; }
+
+.ita-kd-icon-button.ita-kd-single { border-radius: 2px; }
+
+.ita-kd-icon-button { display: inline-block; min-width: 54px; text-align: c=
+enter; color: rgb(68, 68, 68); font-size: 11px; font-weight: bold; height: =
+27px; padding: 0px 8px; margin: 0px; transition: 0.218s; user-select: none;=
+ cursor: default; }
+
+.ita-kd-inputtools-div { display: table; white-space: nowrap; }
+
+.ita-kd-inputtools-div .ita-kd-icon-button { float: left; position: relativ=
+e; z-index: 1; }
+
+::-webkit-input-placeholder { color: rgb(153, 153, 153); }
+
+.ita-kd-icon-button.ita-kd-small { min-width: 33px; width: 33px; padding: 0=
+px; }
+
+.ita-kd-icon-button.ita-kd-small.ita-kd-mobile { height: 30px; width: 44px;=
+ }
+
+.ita-kd-icon-button.ita-kd-dropdown { min-width: 18px; width: 18px; padding=
+: 0px; }
+
+.ita-kd-icon-button.ita-kd-dropdown.ita-kd-mobile { height: 30px; width: 36=
+px; }
+
+.ita-kd-icon-button.ita-kd-floating-bar { min-width: 14px; width: 14px; pad=
+ding: 0px; cursor: move; }
+
+.ita-kd-icon { width: 23px; height: 16px; }
+
+.ita-kd-icon-span { display: inline-block; margin: 6px 0px 0px; opacity: 0.=
+26; vertical-align: middle; }
+
+.ita-kd-arrow.ita-kd-icon-span, .ita-kd-statusbar-icon, .ita-kd-icon-button=
+.ita-kd-selected .ita-kd-icon-span { opacity: 0.54; }
+
+.ita-kd-icon-button:focus { outline: none; }
+
+.ita-kd-statusbar { box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px; border-radi=
+us: 3px; white-space: nowrap; direction: ltr; position: fixed; background-c=
+olor: rgb(238, 238, 238); z-index: 2147483643; }
+
+.ita-kd-statusbar-table { padding: 0px; margin: 0px; border: none; }
+
+.ita-kd-separator { border-top: 1px solid rgb(235, 235, 235); margin-top: 5=
+px; margin-bottom: 6px; }
+
+.ita-kd-inputtool-icon:focus { margin-right: 1px; }
+
+.ita-kd-dropdown-menu { background: rgb(255, 255, 255); border: 1px solid r=
+gba(0, 0, 0, 0.2); padding: 6px 0px; margin: 0px; white-space: nowrap; z-in=
+dex: 2147483645; transition: opacity 0.218s; position: absolute; }
+
+.ita-kd-dropdown-menu-mobile { position: absolute; top: 0px; left: 0px; bac=
+kground-color: rgba(199, 200, 200, 0.5); width: 100%; height: 100%; z-index=
+: 100; }
+
+.ita-kd-dropdown-menu-mobile > .ita-kd-dropdown-menu { margin: auto; max-wi=
+dth: 600px; position: relative; top: 50%; transform: translateY(-50%); }
+
+.ita-kd-dropdown-menu:focus { outline: none; }
+
+.ita-kd-dropdown-menu.ita-kd-ie { border: 1px solid rgb(204, 204, 204); wid=
+th: 260px; }
+
+.ita-kd-menuitem { display: block; padding: 6px 38px 6px 8px; position: rel=
+ative; color: rgb(51, 51, 51); font-size: 13px; height: 16px; font-weight: =
+normal; cursor: default; }
+
+.ita-kd-dropdown-menu-mobile .ita-kd-menuitem { padding-top: 16px; }
+
+.ita-kd-menuitem-inputtool-icon { width: 23px; height: 16px; display: inlin=
+e-block; opacity: 0.54; position: relative; top: 3px; }
+
+.ita-kd-menuitem-inputtool-name { line-height: 17px; padding: 0px 6px; }
+
+.ita-kd-menuitem-setting { line-height: 17px; padding: 0px 22px; }
+
+.ita-kd-menuitem-hover { background-color: rgb(241, 241, 241) !important; c=
+olor: rgb(34, 34, 34) !important; }
+
+.ita-kd-menuitem .ita-kd-checkbox { display: inline-block; width: 22px; hei=
+ght: 16px; }
+
+.ita-kd-menuitem.ita-kd-selected .ita-kd-checkbox { background-image: url("=
+https://www.gstatic.com/inputtools/images/ita_sprite8.png"); background-pos=
+ition: -614px -14px; background-size: 850px 250px; }
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  .ita-kd-menuitem.ita-kd-selected .ita-kd-checkbox { background-image: url=
+("https://www.gstatic.com/inputtools/images/ita_sprite8_2x.png"); }
+}
+
+@media (forced-colors: active), screen and (-ms-high-contrast:white-on-blac=
+k) {
+  .ita-kd-menuitem.ita-kd-selected .ita-kd-checkbox { background-image: url=
+("https://www.gstatic.com/inputtools/images/ita_sprite_grey8.png"); }
+}
+
+@media (forced-colors: active) and (-webkit-min-device-pixel-ratio: 1.5), (=
+forced-colors: active) and (min-resolution: 144dpi), screen and (-ms-high-c=
+ontrast:white-on-black) and (-webkit-min-device-pixel-ratio: 1.5), screen a=
+nd (-ms-high-contrast:white-on-black) and (min-resolution: 144dpi) {
+  .ita-kd-menuitem.ita-kd-selected .ita-kd-checkbox { background-image: url=
+("https://www.gstatic.com/inputtools/images/ita_sprite_grey8_2x.png"); }
+}
+
+@media (forced-colors: active), screen and (-ms-high-contrast:white-on-blac=
+k) {
+  .ita-kd-arrow.ita-kd-icon-span, .ita-kd-statusbar-icon, .ita-kd-icon-butt=
+on.ita-kd-selected .ita-kd-icon-span, .ita-kd-icon-span, .ita-kd-menuitem-i=
+nputtool-icon { opacity: 1; }
+  .ita-kd-menuitem-hover { border: 1px solid; font-weight: bold; }
+  .ita-kd-statusbar, .ita-kd-icon-button.ita-kd-icon-button-hover { border:=
+ 1px solid; }
+}
+
+.ita-ff-black-enabled .ita-kd-menuitem.ita-kd-selected .ita-kd-checkbox { b=
+ackground-image: url("https://www.gstatic.com/inputtools/images/ita_sprite_=
+grey8.png"); }
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  .ita-ff-black-enabled .ita-kd-menuitem.ita-kd-selected .ita-kd-checkbox {=
+ background-image: url("https://www.gstatic.com/inputtools/images/ita_sprit=
+e_grey8_2x.png"); }
+}
+
+.ita-ff-black-enabled .ita-kd-icon-span, .ita-ff-black-enabled .ita-kd-menu=
+item-inputtool-icon { opacity: 1; }
+
+.ita-ff-black-enabled .ita-kd-menuitem-hover { border: 1px solid; font-weig=
+ht: bold; }
+
+.ita-ff-black-enabled.ita-kd-statusbar, .ita-ff-black-enabled .ita-kd-icon-=
+button.ita-kd-icon-button-hover { border: 1px solid; }
+
+sentinel { }
+------MultipartBoundary--u0W7jpJyk8oPj2dusy5nTLwzwWhxwNUETBONPB5Fd1------

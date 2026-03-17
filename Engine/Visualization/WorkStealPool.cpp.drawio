@@ -1,0 +1,187 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.6.1">
+  <diagram name="第 1 页" id="qz4H4MzskV_TGJBp2ABE">
+    <mxGraphModel dx="1891" dy="1111" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="singleton_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e8f4f8;strokeColor=#5b9bd5;" value="" vertex="1">
+          <mxGeometry height="140" width="400" x="50" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="singleton_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;fontSize=13;fontStyle=1;" value="&lt;b&gt;Singleton Pattern - Get()&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="400" x="50" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="singleton_code" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;overflow=hidden;fontSize=11;fontFamily=Courier New;" value="static FWorkStealThreadPool sPool{};&lt;br&gt;return &amp;sPool;" vertex="1">
+          <mxGeometry height="40" width="360" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="singleton_note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;fontColor=#FF6600;" value="⚠️ Function-local static avoids&lt;br&gt;Static Initialization Order Fiasco" vertex="1">
+          <mxGeometry height="40" width="340" x="70" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="constructor_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0f8e8;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="280" width="700" x="50" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="constructor_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;fontSize=13;fontStyle=1;" value="&lt;b&gt;Constructor - Initialization Flow&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="700" x="50" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_step1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="1. Validate&lt;br&gt;AffinityMode" vertex="1">
+          <mxGeometry height="50" width="110" x="80" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_step2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="2. Extract&lt;br&gt;NumThreads" vertex="1">
+          <mxGeometry height="50" width="110" x="220" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_step3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="3. Create&lt;br&gt;Queues (mCount)" vertex="1">
+          <mxGeometry height="50" width="110" x="360" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_step4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="4. Create&lt;br&gt;Threads" vertex="1">
+          <mxGeometry height="50" width="110" x="500" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_step5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="5. Set Thread&lt;br&gt;Affinity" vertex="1">
+          <mxGeometry height="50" width="100" x="640" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_arrow1" edge="1" parent="1" source="ctor_step1" style="endArrow=classic;html=1;fontSize=10;" target="ctor_step2" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_arrow2" edge="1" parent="1" source="ctor_step2" style="endArrow=classic;html=1;fontSize=10;" target="ctor_step3" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_arrow3" edge="1" parent="1" source="ctor_step3" style="endArrow=classic;html=1;fontSize=10;" target="ctor_step4" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_arrow4" edge="1" parent="1" source="ctor_step4" style="endArrow=classic;html=1;fontSize=10;" target="ctor_step5" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_detail1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;" value="• Queues created FIRST&lt;br&gt;• Then threads (dependency order)" vertex="1">
+          <mxGeometry height="40" width="250" x="80" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_detail2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;" value="• Each thread has lambda with&lt;br&gt;  - index capture&lt;br&gt;  - work-stealing loop&lt;br&gt;  - TID registration" vertex="1">
+          <mxGeometry height="60" width="250" x="360" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="ctor_detail3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;" value="• Uses boost::thread_group&lt;br&gt;• Affinity set AFTER creation" vertex="1">
+          <mxGeometry height="40" width="200" x="640" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="380" width="1100" x="50" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;fontSize=13;fontStyle=1;" value="&lt;b&gt;Worker Thread Loop - Work Stealing Logic&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="1100" x="50" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_step0" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d9d9d9;strokeColor=#000000;fontSize=9;" value="TID Register&lt;br&gt;(Scoped)" vertex="1">
+          <mxGeometry height="45" width="90" x="80" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_step1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="Start Loop&lt;br&gt;(for;;)" vertex="1">
+          <mxGeometry height="45" width="80" x="200" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_step2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" value="Try Steal&lt;br&gt;(n = 0 to mCount)" vertex="1">
+          <mxGeometry height="45" width="120" x="310" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_decision1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#000000;fontSize=10;" value="Stolen?" vertex="1">
+          <mxGeometry height="55" width="70" x="460" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_step3_yes" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" value="Break&lt;(execute task)" vertex="1">
+          <mxGeometry height="40" width="80" x="560" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_step3_no" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" value="Pop Own Queue&lt;br&gt;(blocking, 100ms)" vertex="1">
+          <mxGeometry height="50" width="100" x="560" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_decision2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#000000;fontSize=10;" value="Got Task?" vertex="1">
+          <mxGeometry height="55" width="70" x="690" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_step4_yes" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Execute Task" vertex="1">
+          <mxGeometry height="40" width="90" x="790" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_step4_no" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#000000;fontSize=9;" value="ShouldStop?" vertex="1">
+          <mxGeometry height="40" width="90" x="790" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_exit" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Exit Thread" vertex="1">
+          <mxGeometry height="40" width="90" x="910" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_continue" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d9d9d9;strokeColor=#000000;fontSize=9;" value="Continue&lt;br&gt;(retry)" vertex="1">
+          <mxGeometry height="40" width="70" x="910" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_post" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="Collect TLS&lt;br&gt;Memory" vertex="1">
+          <mxGeometry height="45" width="90" x="560" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow1" edge="1" parent="1" source="worker_step0" style="endArrow=classic;html=1;fontSize=9;" target="worker_step1" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow2" edge="1" parent="1" source="worker_step1" style="endArrow=classic;html=1;fontSize=9;" target="worker_step2" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow3" edge="1" parent="1" source="worker_step2" style="endArrow=classic;html=1;fontSize=9;" target="worker_decision1" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow4" edge="1" parent="1" source="worker_decision1" style="endArrow=classic;html=1;fontSize=9;" target="worker_step3_yes" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow5" edge="1" parent="1" source="worker_decision1" style="endArrow=classic;html=1;fontSize=9;" target="worker_step3_no" value="No">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow6" edge="1" parent="1" source="worker_step3_no" style="endArrow=classic;html=1;fontSize=9;" target="worker_decision2" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow7" edge="1" parent="1" source="worker_decision2" style="endArrow=classic;html=1;fontSize=9;" target="worker_step4_yes" value="Yes">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow8" edge="1" parent="1" source="worker_decision2" style="endArrow=classic;html=1;fontSize=9;" target="worker_step4_no" value="No">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow9" edge="1" parent="1" source="worker_step4_no" style="endArrow=classic;html=1;fontSize=9;" target="worker_exit" value="Yes">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow10" edge="1" parent="1" source="worker_step4_no" style="endArrow=classic;html=1;fontSize=9;" target="worker_continue" value="No">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow11" edge="1" parent="1" source="worker_step4_yes" style="endArrow=classic;html=1;fontSize=9;entryX=0.5;entryY=1;" target="worker_post" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w_arrow12" edge="1" parent="1" style="endArrow=classic;html=1;fontSize=9;" target="worker_step1" value="Loop back">
+          <mxGeometry height="50" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="605" y="760" />
+              <mxPoint x="240" y="760" />
+            </Array>
+            <mxPoint x="605" y="725" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="worker_note1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;" value="📝 Steal strategy: (index + n) % mCount&lt;br&gt;Tries all queues in round-robin order" vertex="1">
+          <mxGeometry height="40" width="200" x="310" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_note2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;" value="📝 PopFront&amp;lt;true&amp;gt; = non-blocking&lt;br&gt;📝 PopFront&amp;lt;false&amp;gt; = blocking (100ms timeout)" vertex="1">
+          <mxGeometry height="40" width="250" x="560" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_note3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;" value="📝 Optional scoped timer logging&lt;br&gt;  (HLVM_DEBUG_THREAD_UTILITY)" vertex="1">
+          <mxGeometry height="35" width="180" x="790" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="destructor_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="140" width="600" x="50" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="destructor_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;fontSize=13;fontStyle=1;" value="&lt;b&gt;Destructor - Shutdown Sequence&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="600" x="50" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="destructor_step1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="1. SignalStop()&lt;br&gt;all queues" vertex="1">
+          <mxGeometry height="50" width="130" x="100" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="destructor_step2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="2. join_all()&lt;br&gt;wait for threads" vertex="1">
+          <mxGeometry height="50" width="130" x="280" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="destructor_arrow" edge="1" parent="1" source="destructor_step1" style="endArrow=classic;html=1;fontSize=10;" target="destructor_step2" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="destructor_note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;" value="⚠️ Order matters: Signal first, then join&lt;br→ Prevents hanging threads waiting on queues" vertex="1">
+          <mxGeometry height="40" width="350" x="100" y="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="details_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e7e6e6;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="200" width="450" x="700" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="details_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;fontSize=13;fontStyle=1;" value="&lt;b&gt;Key Implementation Details&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="450" x="700" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="detail1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;fontSize=10;" value="✓ Queues created before threads&lt;br&gt;✓ TID registration via RAII (tidRegister)&lt;br&gt;✓ Work-stealing: try all queues, then block on own&lt;br&gt;✓ Non-blocking steal (PopFront&amp;lt;true&amp;gt;)&lt;br&gt;✓ Blocking own-queue pop (PopFront&amp;lt;false&amp;gt;, 100ms)" vertex="1">
+          <mxGeometry height="90" width="410" x="720" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="detail2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;fontSize=10;" value="⚡ GMallocatorTLS-&gt;Collect() after each task&lt;br&gt;  (prevents delayed memory freeing in MT)" vertex="1">
+          <mxGeometry height="40" width="300" x="720" y="1040" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

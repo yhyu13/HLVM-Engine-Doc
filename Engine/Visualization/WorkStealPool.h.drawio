@@ -1,0 +1,145 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.6.1">
+  <diagram name="第 1 页" id="7qfP3g2ef85u4xO93-TQ">
+    <mxGraphModel dx="1655" dy="973" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="900" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="class" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" value="FWorkStealThreadPool" vertex="1">
+          <mxGeometry height="60" width="300" x="650" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="members_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;fontSize=12;" value="&lt;b&gt;Private Members:&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="280" x="660" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="member1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="mQueues: TVector&lt;unique_ptr&lt;TTaskQueue&lt;std::function&lt;void()&gt;&gt;&gt;&gt;" vertex="1">
+          <mxGeometry height="50" width="280" x="660" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="member2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="mThreads: boost::thread_group" vertex="1">
+          <mxGeometry height="40" width="280" x="660" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="member3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="mCount: uint32_t" vertex="1">
+          <mxGeometry height="40" width="280" x="660" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="member4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="mJobIndex: atomic_uint_fast32_t" vertex="1">
+          <mxGeometry height="40" width="280" x="660" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="methods_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;fontSize=12;" value="&lt;b&gt;Public Methods:&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="280" x="660" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="method1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="EnqueueTask(F&amp;&amp; f, Args&amp;&amp;... args)&lt;br&gt;→ std::future&lt;TaskRetType&gt;" vertex="1">
+          <mxGeometry height="45" width="280" x="660" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="method2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="EnqueueTask(Priority, F&amp;&amp; f, Args&amp;&amp;... args)&lt;br&gt;→ std::future&lt;TaskRetType&gt;" vertex="1">
+          <mxGeometry height="45" width="280" x="660" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="method3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="EnqueueTaskIfEmpty(Priority, F&amp;&amp; f, Args&amp;&amp;... args)&lt;br&gt;→ pair&lt;future, bool&gt;" vertex="1">
+          <mxGeometry height="45" width="280" x="660" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="method4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="NumThreads() → uint32_t" vertex="1">
+          <mxGeometry height="35" width="280" x="660" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="queue_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="300" width="500" x="50" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="queue_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;fontSize=13;fontStyle=1;" value="&lt;b&gt;Task Queues (Per-Thread)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="500" x="50" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="queue1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="Queue[0]&lt;br&gt;TTaskQueue&lt;ProcType&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="80" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="queue2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="Queue[1]&lt;br&gt;TTaskQueue&lt;ProcType&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="240" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="queue3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="Queue[2]&lt;br&gt;TTaskQueue&lt;ProcType&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="400" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="queue_dots" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=14;" value="..." vertex="1">
+          <mxGeometry height="30" width="80" x="270" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="queue_note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" value="• MPMC Concurrent Queue&lt;br&gt;• Priority-based&lt;br&gt;• Work-stealing enabled" vertex="1">
+          <mxGeometry height="60" width="200" x="80" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="threads_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
+          <mxGeometry height="300" width="450" x="1050" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="threads_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;fontSize=13;fontStyle=1;" value="&lt;b&gt;Worker Threads (boost::thread_group)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="450" x="1050" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="thread1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="Thread 0&lt;br&gt;boost::thread" vertex="1">
+          <mxGeometry height="50" width="120" x="1080" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="thread2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="Thread 1&lt;br&gt;boost::thread" vertex="1">
+          <mxGeometry height="50" width="120" x="1230" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="thread3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="Thread N&lt;br&gt;boost::thread" vertex="1">
+          <mxGeometry height="50" width="120" x="1380" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="thread_note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" value="• Configurable affinity&lt;br&gt;• Work stealing logic&lt;br&gt;• Task execution" vertex="1">
+          <mxGeometry height="60" width="180" x="1080" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" edge="1" parent="1" source="queue1" style="endArrow=classic;html=1;fontSize=12;entryX=0;entryY=0.5;" target="member1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="210" y="230" as="sourcePoint" />
+            <mxPoint x="650" y="175" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow2" edge="1" parent="1" style="endArrow=classic;html=1;fontSize=12;entryX=1;entryY=0.5;" target="member2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1080" y="230" as="sourcePoint" />
+            <mxPoint x="950" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8f8f8;strokeColor=#999999;" value="" vertex="1">
+          <mxGeometry height="200" width="1450" x="50" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;" value="&lt;b&gt;Task Execution Flow&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="1450" x="50" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="step1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="1. EnqueueTask&lt;br&gt;called" vertex="1">
+          <mxGeometry height="60" width="130" x="100" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="step2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="2. Check thread&lt;br&gt;validity" vertex="1">
+          <mxGeometry height="60" width="130" x="280" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="step3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="3. Wrap in&lt;br&gt;packaged_task" vertex="1">
+          <mxGeometry height="60" width="130" x="460" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="step4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="4. Round-robin&lt;br&gt;queue selection" vertex="1">
+          <mxGeometry height="60" width="130" x="640" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="step5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="5. Push to&lt;br&gt;TTaskQueue" vertex="1">
+          <mxGeometry height="60" width="130" x="820" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="step6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="6. Worker&lt;br&gt;executes" vertex="1">
+          <mxGeometry height="60" width="130" x="1000" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="step7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" value="7. Return&lt;br&gt;std::future" vertex="1">
+          <mxGeometry height="60" width="130" x="1180" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_arrow1" edge="1" parent="1" source="step1" style="endArrow=classic;html=1;fontSize=10;" target="step2" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_arrow2" edge="1" parent="1" source="step2" style="endArrow=classic;html=1;fontSize=10;" target="step3" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_arrow3" edge="1" parent="1" source="step3" style="endArrow=classic;html=1;fontSize=10;" target="step4" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_arrow4" edge="1" parent="1" source="step4" style="endArrow=classic;html=1;fontSize=10;" target="step5" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_arrow5" edge="1" parent="1" source="step5" style="endArrow=classic;html=1;fontSize=10;" target="step6" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_arrow6" edge="1" parent="1" source="step6" style="endArrow=classic;html=1;fontSize=10;" target="step7" value="">
+          <mxGeometry height="50" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="features" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d4e1f5;strokeColor=#5d7a9e;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;" value="&lt;b&gt;Key Features:&lt;/b&gt;&lt;br&gt;• Work-stealing algorithm for load balancing&lt;br&gt;• Per-thread task queues with MPMC access&lt;br&gt;• Round-robin task distribution&lt;br&gt;• Thread affinity configuration&lt;br&gt;• Priority-based scheduling&lt;br&gt;• Deadlock prevention via thread validation&lt;br&gt;• Returns std::future for async results" vertex="1">
+          <mxGeometry height="140" width="500" x="50" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="typedefs" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f0d9;strokeColor=#b8a36c;fontSize=10;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;" value="&lt;b&gt;Type Aliases:&lt;/b&gt;&lt;br&gt;• ProcType = std::function&lt;void()&gt;&lt;br&gt;• QueueType = TTaskQueue&lt;ProcType&gt;&lt;br&gt;• QueuesType = TVector&lt;unique_ptr&lt;QueueType&gt;&gt;&lt;br&gt;• ThreadsType = boost::thread_group" vertex="1">
+          <mxGeometry height="90" width="400" x="600" y="840" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
