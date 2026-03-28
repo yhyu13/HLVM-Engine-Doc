@@ -1,0 +1,146 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.6.6">
+  <diagram name="第 1 页" id="ZX7NpwfbmHV8XjD7xwO6">
+    <mxGraphModel dx="1986" dy="2330" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Security" vertex="1">
+          <mxGeometry height="270" width="873" x="627" y="2030" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Allocation Paths" vertex="1">
+          <mxGeometry height="420" width="599" x="10.5" y="1280" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Mallocator Singleton" vertex="1">
+          <mxGeometry height="918" width="763" x="450" y="-80" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Heap (Thread-Local)" vertex="1">
+          <mxGeometry height="272" width="1061" x="63" y="976" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="SizeClass - 64 Classes" vertex="1">
+          <mxGeometry height="148" width="294" x="1231" y="393" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="6" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Size classes 0-53&#xa;        8B to 8KB progressive" vertex="1">
+          <mxGeometry height="78" width="219" x="46" y="43" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Core Data Structures" vertex="1">
+          <mxGeometry height="673" width="740" x="640" y="1298" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="mi_config Constants" vertex="1">
+          <mxGeometry height="868" width="384" x="1575" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="9" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="SEGMENT_SIZE = 4MB" vertex="1">
+          <mxGeometry height="54" width="235" x="83" y="43" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="9" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="SMALL_PAGE_SIZE = 64KB" vertex="1">
+          <mxGeometry height="78" width="260" x="70" y="147" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="9" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="SMALL_PAGES_PER_SEGMENT = 64" vertex="1">
+          <mxGeometry height="78" width="309" x="46" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="9" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="GUARD_PAGE_SIZE = 4KB" vertex="1">
+          <mxGeometry height="78" width="260" x="70" y="403" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="9" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="MAX_SMALL_SIZE = 8KB" vertex="1">
+          <mxGeometry height="54" width="249" x="76" y="531" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="9" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="MAX_LARGE_SIZE = 512KB" vertex="1">
+          <mxGeometry height="78" width="260" x="70" y="635" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="9" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="HEARTBEAT_INTERVAL = 256" vertex="1">
+          <mxGeometry height="78" width="260" x="70" y="763" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Block Structure&#xa;        - next: Block* (XOR-encoded)&#xa;        - encode_next() / decoded_next()" vertex="1">
+          <mxGeometry height="150" width="260" x="662" y="1796" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Page (64-byte aligned)&#xa;        - Three Free Lists:&#xa;          available, local_pending&#xa;          thread_pending (atomic)&#xa;        - Counters: used_count, &#xa;          pending_count, capacity&#xa;        - Meta: kind, state, cookie" vertex="1">
+          <mxGeometry height="198" width="242" x="671" y="1548" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Segment (4MB aligned)&#xa;        - Header: thread_id, cookie&#xa;        - pages[64]: Page array&#xa;        - Guard page protection" vertex="1">
+          <mxGeometry height="126" width="253" x="666" y="1335" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="- pages_direct[64]: Page*&#xa;        - pages[64]: Page*&#xa;        - full_pages: Page*&#xa;        - delayed_free (atomic)&#xa;        - Stats (atomic counters)&#xa;        - segments_ vector" vertex="1">
+          <mxGeometry height="222" width="260" x="662" y="1001" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="allocate(size)&#xa;        -&gt; is_small: allocate_small()&#xa;        -&gt; is_large: allocate_large()  &#xa;        -&gt; is_huge: allocate_huge()" vertex="1">
+          <mxGeometry height="174" width="260" x="180" y="1025" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="static instance()" vertex="1">
+          <mxGeometry height="54" width="172" x="468" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="heaps_ vector" vertex="1">
+          <mxGeometry height="54" width="161" x="690" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="thread_local Heap* tl_heap_" vertex="1">
+          <mxGeometry height="78" width="260" x="901" y="428" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Fast Path (lock-free)&#xa;        1. Get size class&#xa;        2. Check pages_direct[sc]&#xa;        3. allocate_local()" vertex="1">
+          <mxGeometry height="126" width="244" x="43" y="1335" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Generic Path&#xa;        1. collect_delayed_free()&#xa;        2. find_page()&#xa;        3. collect(page)&#xa;        4. allocate_local()" vertex="1">
+          <mxGeometry height="150" width="235" x="337" y="1323" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Cookie = random uintptr_t&#xa;        XOR-encoded Block pointers" vertex="1">
+          <mxGeometry height="102" width="260" x="662" y="2046" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Guard pages&#xa;        PAGE_NOACCESS" vertex="1">
+          <mxGeometry height="78" width="202" x="972" y="2058" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="randomize_free_list()&#xa;        Fisher-Yates shuffle" vertex="1">
+          <mxGeometry height="78" width="210" x="1224" y="2058" as="geometry" />
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" source="17" style="curved=1;startArrow=none;endArrow=block;exitX=0.32;exitY=1;entryX=0.34;entryY=0;" target="27" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="1971" />
+              <mxPoint x="730" y="2021" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" source="18" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="17" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" edge="1" parent="1" source="19" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="18" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" source="21" style="curved=1;startArrow=none;endArrow=block;exitX=0.14;exitY=1;entryX=0.5;entryY=0;" target="25" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="165" y="1248" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" source="21" style="curved=1;startArrow=none;endArrow=block;exitX=0.86;exitY=1;entryX=0.5;entryY=0;" target="26" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="455" y="1248" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" source="5" style="curved=1;startArrow=none;endArrow=block;" target="19" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" edge="1" parent="1" source="4" style="curved=1;startArrow=none;endArrow=block;" target="5" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" edge="1" parent="1" source="24" style="curved=1;startArrow=none;endArrow=block;" target="5" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="38" edge="1" parent="1" source="2" style="curved=1;startArrow=none;endArrow=block;" target="17" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

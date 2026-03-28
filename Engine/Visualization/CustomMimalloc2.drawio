@@ -1,0 +1,109 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.6.6">
+  <diagram name="第 1 页" id="Fhd5FMFj_mRb8EVPcU8R">
+    <mxGraphModel dx="1986" dy="1161" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#1F4E79;" value="MiMalloc Architecture - HLVM Custom Allocator" vertex="1">
+          <mxGeometry height="40" width="400" x="400" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="config_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;align=center;fontStyle=1;fontSize=14;" value="mi_config Constants" vertex="1">
+          <mxGeometry height="35" width="180" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="config_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D6DCE5;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;spacing=8;" value="- SEGMENT_SIZE = 4MB&#xa;- SMALL_PAGE_SIZE = 64KB&#xa;- SMALL_PAGES_PER_SEGMENT = 64&#xa;- GUARD_PAGE_SIZE = 4KB&#xa;- MAX_SMALL_SIZE = 8KB&#xa;- MAX_LARGE_SIZE = 512KB&#xa;- HEARTBEAT_INTERVAL = 256&#xa;- SIZE_CLASS_COUNT = 64" vertex="1">
+          <mxGeometry height="180" width="180" x="40" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="block_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;align=center;fontStyle=1;fontSize=14;" value="Block" vertex="1">
+          <mxGeometry height="35" width="120" x="280" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="block_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2EFDA;align=center;fontSize=10;fontColor=#333333;spacing=5;" value="┌─────────────────┐&#xa;│ next: Block*   │&#xa;│ (XOR-encoded)   │&#xa;├─────────────────┤&#xa;│ encode_next()   │&#xa;│ decoded_next() │&#xa;└─────────────────┘" vertex="1">
+          <mxGeometry height="120" width="130" x="280" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="page_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;align=center;fontStyle=1;fontSize=14;" value="Page (64-byte aligned)" vertex="1">
+          <mxGeometry height="35" width="200" x="470" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="page_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FCE4D6;align=left;fontSize=10;fontColor=#333333;spacing=5;" value="┌───────────────────────────────┐&#xa;│ FREE LISTS:                    │&#xa;│  ├─ available: Block*           │&#xa;│  ├─ local_pending: Block*     │&#xa;│  └─ thread_pending: atomic&lt;&gt; │&#xa;├───────────────────────────────┤&#xa;│ COUNTERS:                      │&#xa;│  used_count, pending_count     │&#xa;│  thread_pending_count, capacity│&#xa;│  block_size, heartbeat_counter │&#xa;├───────────────────────────────┤&#xa;│ METADATA:                      │&#xa;│  kind, state, thread_id, cookie│&#xa;└───────────────────────────────┘" vertex="1">
+          <mxGeometry height="200" width="200" x="470" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="segment_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#5B9BD5;fontColor=#FFFFFF;align=center;fontStyle=1;fontSize=14;" value="Segment (4MB aligned)" vertex="1">
+          <mxGeometry height="35" width="200" x="730" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="segment_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DEEBF7;align=left;fontSize=10;fontColor=#333333;spacing=5;" value="┌───────────────────────────────┐&#xa;│ HEADER:                        │&#xa;│  thread_id, segment_id          │&#xa;│  kind, page_shift, page_count  │&#xa;│  cookie                         │&#xa;├───────────────────────────────┤&#xa;│ PAGES[64]:                     │&#xa;│  pages[0..63]: Page             │&#xa;├───────────────────────────────┤&#xa;│ GUARD PAGE (4KB)               │&#xa;│  PAGE_NOACCESS protection       │&#xa;└───────────────────────────────┘" vertex="1">
+          <mxGeometry height="200" width="200" x="730" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="sizeclass_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9E480E;fontColor=#FFFFFF;align=center;fontStyle=1;fontSize=14;" value="SizeClass" vertex="1">
+          <mxGeometry height="35" width="180" x="40" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="sizeclass_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F4B183;align=left;fontSize=10;fontColor=#333333;spacing=5;" value="┌─────────────────────────┐&#xa;│ 64 Size Classes (0-53)    │&#xa;├─────────────────────────┤&#xa;│ Class 0:    8 bytes       │&#xa;│ Class 1:   16 bytes       │&#xa;│ Class 2:   24 bytes       │&#xa;│ Class 3:   32 bytes       │&#xa;│ Class 4:   48 bytes       │&#xa;│ Class 5:   64 bytes       │&#xa;│ Class 6:   80 bytes       │&#xa;│ Class 7:   96 bytes       │&#xa;│ Class 8:  112 bytes       │&#xa;│ Class 9:  128 bytes       │&#xa;│ Classes 10-21: 160-512B   │&#xa;│ Classes 22-37: 576-2048B  │&#xa;│ Classes 38-53: 2304-8KB  │&#xa;└─────────────────────────┘" vertex="1">
+          <mxGeometry height="240" width="180" x="40" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="heap_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;align=center;fontStyle=1;fontSize=14;" value="Heap (Thread-Local)" vertex="1">
+          <mxGeometry height="35" width="200" x="280" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="heap_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2D5F0;align=left;fontSize=10;fontColor=#333333;spacing=5;" value="┌───────────────────────────────┐&#xa;│ PAGES_DIRECT[64]: Page*      │&#xa;│ PAGES[64]: Page*             │&#xa;│ FULL_PAGES: Page*            │&#xa;│ DELAYED_FREE: atomic&lt;&gt;     │&#xa;├───────────────────────────────┤&#xa;│ THREAD_ID: uint32             │&#xa;│ COOKIE: uintptr               │&#xa;├───────────────────────────────┤&#xa;│ STATS (atomic counters):      │&#xa;│  alloc_count, free_count      │&#xa;│  bytes_allocated, bytes_freed │&#xa;│  cross_thread_frees           │&#xa;├───────────────────────────────┤&#xa;│ SEGMENTS_: vector&lt;Segment*&gt; │&#xa;│ SEGMENTS_MUTEX_: std::mutex   │&#xa;└───────────────────────────────┘" vertex="1">
+          <mxGeometry height="240" width="200" x="280" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="malloc_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C00000;fontColor=#FFFFFF;align=center;fontStyle=1;fontSize=14;" value="Mallocator (Singleton)" vertex="1">
+          <mxGeometry height="35" width="200" x="540" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="malloc_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FADBD8;align=left;fontSize=10;fontColor=#333333;spacing=5;" value="┌───────────────────────────────┐&#xa;│ STATIC INSTANCE:              │&#xa;│  static Mallocator&amp; instance()│&#xa;├───────────────────────────────┤&#xa;│ THREAD HEAPS:                  │&#xa;│  HEAPS_: vector&lt;Heap*&gt;        │&#xa;│  HEAPS_MUTEX_: shared_mutex    │&#xa;│  TL_HEAP_: thread_local Heap* │&#xa;├───────────────────────────────┤&#xa;│ OPTIONS:                       │&#xa;│  enable_security: bool         │&#xa;│  enable_stats: bool            │&#xa;│  heartbeat_interval: size_t   │&#xa;│  deferred_free_fn: fn ptr     │&#xa;├───────────────────────────────┤&#xa;│ METHODS:                       │&#xa;│  allocate(size)                │&#xa;│  free(ptr)                     │&#xa;│  realloc(ptr, size)            │&#xa;│  thread_init() / thread_done() │&#xa;└───────────────────────────────┘" vertex="1">
+          <mxGeometry height="280" width="200" x="540" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="security_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#333333;fontColor=#FFFFFF;align=center;fontStyle=1;fontSize=14;" value="Security Features" vertex="1">
+          <mxGeometry height="35" width="150" x="800" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="security_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D9D9D9;align=left;fontSize=10;fontColor=#333333;spacing=5;" value="┌─────────────────────────┐&#xa;│ COOKIE:                  │&#xa;│  Random uintptr_t        │&#xa;│  XOR-encodes Block ptrs │&#xa;├─────────────────────────┤&#xa;│ GUARD PAGES:            │&#xa;│  PAGE_NOACCESS before   │&#xa;│  each segment           │&#xa;├─────────────────────────┤&#xa;│ RANDOMIZE FREE LIST:    │&#xa;│  Fisher-Yates shuffle   │&#xa;│  Prevents heap forensics │&#xa;└─────────────────────────┘" vertex="1">
+          <mxGeometry height="150" width="150" x="800" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="alloc_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F4E79;fontColor=#FFFFFF;align=center;fontStyle=1;fontSize=14;" value="Allocation Paths" vertex="1">
+          <mxGeometry height="35" width="150" x="800" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="fast_path" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#BDD7EE;align=left;fontSize=10;fontColor=#333333;spacing=5;" value="┌─────────────────────────┐&#xa;│ FAST PATH (~10-15 instr)│&#xa;│ Lock-free (same thread)│&#xa;├─────────────────────────┤&#xa;│ 1. Get size class        │&#xa;│ 2. Check pages_direct[sc]│&#xa;│ 3. If available + hbeat │&#xa;│ 4. allocate_local()      │&#xa;└─────────────────────────┘" vertex="1">
+          <mxGeometry height="130" width="150" x="800" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="generic_path" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#BDD7EE;align=left;fontSize=10;fontColor=#333333;spacing=5;" value="┌─────────────────────────┐&#xa;│ GENERIC PATH            │&#xa;│ Slow path (may lock)   │&#xa;├─────────────────────────┤&#xa;│ 1. collect_delayed_free()│&#xa;│ 2. find_page(sc)         │&#xa;│ 3. collect(page)         │&#xa;│ 4. allocate_local()      │&#xa;│ 5. allocate_fresh_page() │&#xa;└─────────────────────────┘" vertex="1">
+          <mxGeometry height="130" width="150" x="800" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" edge="1" parent="1" source="config_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#4472C4;" target="block_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2" edge="1" parent="1" source="block_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#70AD47;" target="page_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="page_block_label" connectable="0" parent="arrow2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=10;fontColor=#70AD47;" value="contains&#xa;blocks" vertex="1">
+          <mxGeometry relative="1" x="0.5" y="-10" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3" edge="1" parent="1" source="page_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#5B9BD5;" target="segment_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seg_page_label" connectable="0" parent="arrow3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=10;fontColor=#5B9BD5;" value="contains&#xa;64 pages" vertex="1">
+          <mxGeometry relative="1" x="0.5" y="-10" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4" edge="1" parent="1" source="sizeclass_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#9E480E;" target="heap_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_arrow" connectable="0" parent="arrow4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=10;fontColor=#9E480E;" value="64 size classes&#xa;index pages[]" vertex="1">
+          <mxGeometry relative="1" x="0.5" y="-10" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow5" edge="1" parent="1" source="heap_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#7030A0;" target="malloc_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="heap_seg_label" connectable="0" parent="arrow5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=10;fontColor=#7030A0;" value="manages" vertex="1">
+          <mxGeometry relative="1" x="0.5" y="-10" as="geometry" />
+        </mxCell>
+        <mxCell id="malloc_heap_label" connectable="0" parent="arrow5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=10;fontColor=#C00000;" value="creates" vertex="1">
+          <mxGeometry relative="1" x="0.5" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow6" edge="1" parent="1" source="malloc_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C00000;" target="security_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sec_block_label" connectable="0" parent="arrow6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=10;fontColor=#333333;" value="protects" vertex="1">
+          <mxGeometry relative="1" x="0.5" y="-10" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow7" edge="1" parent="1" source="malloc_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;" target="fast_path">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

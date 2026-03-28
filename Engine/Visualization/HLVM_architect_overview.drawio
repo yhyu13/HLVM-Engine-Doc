@@ -1,0 +1,216 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.6.6">
+  <diagram name="第 1 页" id="Jv_Vjh9xybFUTIrRs1mu">
+    <mxGraphModel dx="1986" dy="2361" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" value="HLVM-Engine Architecture Overview" vertex="1">
+          <mxGeometry height="40" width="200" x="700" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#e1f5fe;strokeColor=#01579b;fontSize=14;fontStyle=1" value="Core Philosophy" vertex="1">
+          <mxGeometry height="180" width="300" x="50" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" value="UE5-Inspired but Improved" vertex="1">
+          <mxGeometry height="30" width="300" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" value="Linux-First Development" vertex="1">
+          <mxGeometry height="30" width="300" y="53" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" value="Zero-Copy Optimization" vertex="1">
+          <mxGeometry height="30" width="300" y="83" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" value="Compile-Time Safety (C++20/23)" vertex="1">
+          <mxGeometry height="30" width="300" y="113" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" value="RAII Everywhere (No Raw Pointers)" vertex="1">
+          <mxGeometry height="30" width="300" y="143" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=14;fontStyle=1" value="Layer Architecture" vertex="1">
+          <mxGeometry height="200" width="350" x="400" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="9" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;" value="Application Layer (Game/Engine)" vertex="1">
+          <mxGeometry height="40" width="350" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="9" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1" value="Common Module (Foundation - Self-Contained)" vertex="1">
+          <mxGeometry height="50" width="350" y="63" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="9" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=0" value="• Public API (91 headers)&#xa;• Private Implementation (39 sources)&#xa;• Test Suite (27 files)" vertex="1">
+          <mxGeometry height="50" width="350" y="113" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="9" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;" value="Platform Layer (Linux GNU / Windows)" vertex="1">
+          <mxGeometry height="37" width="350" y="163" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#ffebee;strokeColor=#c62828;fontSize=14;fontStyle=1" value="🧠 Memory Management" vertex="1">
+          <mxGeometry height="220" width="380" x="50" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="14" style="text;html=1;strokeColor=#000000;fillColor=#fff9c4;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1" value="GMallocatorTLS (Thread-Local Storage)" vertex="1">
+          <mxGeometry height="35" width="380" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="14" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;" value="IMallocator Interface" vertex="1">
+          <mxGeometry height="30" width="380" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="14" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="FMiMallocator (Default: mimalloc)&#xa;FStackAllocator (2-3x faster)&#xa;FStdMallocator (Standard)&#xa;FVMMallocator (Deprecated WIP)" vertex="1">
+          <mxGeometry height="60" width="380" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="14" style="text;html=1;strokeColor=#bf360c;fillColor=#fbe9e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#bf360c;fontStyle=1" value="⚠️ Global new/delete Override&#xa;(ALL allocations forced through GMallocator)" vertex="1">
+          <mxGeometry height="35" width="380" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="14" style="text;html=1;strokeColor=#bf360c;fillColor=#fbe9e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#bf360c;" value="⚠️ Risk: Thread exit without cleanup → Memory Leak" vertex="1">
+          <mxGeometry height="30" width="380" y="183" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=14;fontStyle=1" value="📝 Logging System (UE5-Inspired)" vertex="1">
+          <mxGeometry height="220" width="380" x="470" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="20" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;" value="HLVM_LOG(Category, Level, Format, ...)" vertex="1">
+          <mxGeometry height="30" width="380" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="20" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;" value="FLogCategory (Compile-time level filtering)" vertex="1">
+          <mxGeometry height="30" width="380" y="53" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="20" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;" value="FLogContext (Category, Level, File, Line)" vertex="1">
+          <mxGeometry height="30" width="380" y="83" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="20" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;" value="FLogRedirector (Singleton Manager)" vertex="1">
+          <mxGeometry height="30" width="380" y="113" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="20" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="Async (trace/debug/info) → spdlog async queue&#xa;Sync (warning/error/critical) → Immediate flush" vertex="1">
+          <mxGeometry height="40" width="380" y="143" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="20" style="text;html=1;strokeColor=#bf360c;fillColor=#fbe9e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#bf360c;" value="⚠️ Async queue drops messages on overflow" vertex="1">
+          <mxGeometry height="30" width="380" y="183" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#fff3e0;strokeColor=#e65100;fontSize=14;fontStyle=1" value="🚀 Parallelism &amp; Concurrency" vertex="1">
+          <mxGeometry height="200" width="400" x="50" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="27" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="FAtomicFlag (~1.5x faster than boost)&#xa;FRWLock (Read-heavy optimized)&#xa;TConcurrentQueue SPSC/MPMC&#xa;FWorkStealThreadPool (Optimal load balancing)" vertex="1">
+          <mxGeometry height="60" width="400" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="27" style="text;html=1;strokeColor=#d32f2f;fillColor=#ffcdd2;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#d32f2f;fontStyle=1" value="❌ FWorkStealFiberPool - EXPERIMENTAL (DO NOT USE)&#xa;Stability issues with work-stealing" vertex="1">
+          <mxGeometry height="40" width="400" y="83" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="27" style="text;html=1;strokeColor=#0277bd;fillColor=#b3e5fc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#0277bd;" value="💡 Work-stealing provides better cache locality&#xa;than fixed queues (complexity → performance)" vertex="1">
+          <mxGeometry height="40" width="400" y="123" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="27" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="Thread affinity support for NUMA systems" vertex="1">
+          <mxGeometry height="30" width="400" y="163" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#fce4ec;strokeColor=#880e4f;fontSize=14;fontStyle=1" value="📁 File System Abstraction" vertex="1">
+          <mxGeometry height="200" width="360" x="490" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="33" parent="32" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;" value="IFileHandle Interface" vertex="1">
+          <mxGeometry height="30" width="360" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="34" parent="32" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="FBoostFileHandle (boost::filesystem)&#xa;FStdFileHandle (std::fstream)&#xa;FPackedFileHandle (Packed archives)" vertex="1">
+          <mxGeometry height="45" width="360" y="53" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="32" style="text;html=1;strokeColor=#000000;fillColor=#f8bbd9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;" value="FPackedTokenEntry: {Hash, Offset, Size, Compression}&#xa;4MB mmap fragments (minimizes RSS)" vertex="1">
+          <mxGeometry height="40" width="360" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="32" style="text;html=1;strokeColor=#0277bd;fillColor=#b3e5fc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#0277bd;" value="💡 Path Hash instead of full path&#xa;Smaller metadata, requires debug JSON" vertex="1">
+          <mxGeometry height="40" width="360" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="32" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="Zstd compression (level 1 for speed)" vertex="1">
+          <mxGeometry height="20" width="360" y="178" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontSize=14;fontStyle=1" value="⚙️ Platform Abstraction Layer (PAL)" vertex="1">
+          <mxGeometry height="240" width="350" x="870" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="39" parent="38" style="text;html=1;strokeColor=#000000;fillColor=#e8f5e9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1" value="Linux GNU" vertex="1">
+          <mxGeometry height="30" width="350" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="40" parent="38" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="Debugger: ptrace(PTRACE_TRACEME)&#xa;Crash: Core dump handler&#xa;Async I/O: io_uring (Under evaluation)" vertex="1">
+          <mxGeometry height="50" width="350" y="53" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="38" style="text;html=1;strokeColor=#000000;fillColor=#e3f2fd;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1" value="Windows" vertex="1">
+          <mxGeometry height="30" width="350" y="103" as="geometry" />
+        </mxCell>
+        <mxCell id="42" parent="38" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="Debugger: IsDebuggerPresent()&#xa;Crash: MiniDumpWriteDump" vertex="1">
+          <mxGeometry height="40" width="350" y="133" as="geometry" />
+        </mxCell>
+        <mxCell id="43" parent="38" style="text;html=1;strokeColor=#000000;fillColor=#fff9c4;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1" value="Cross-Platform" vertex="1">
+          <mxGeometry height="25" width="350" y="173" as="geometry" />
+        </mxCell>
+        <mxCell id="44" parent="38" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="backwardcpp for stack traces (libunwind / DbgHelp)" vertex="1">
+          <mxGeometry height="35" width="350" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="45" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#f1f8e9;strokeColor=#558b2f;fontSize=14;fontStyle=1" value="🔨 Build System &amp; Dependencies" vertex="1">
+          <mxGeometry height="260" width="350" x="870" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="46" parent="45" style="text;html=1;strokeColor=#000000;fillColor=#dcedc8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;" value="PyCMake (Custom: /Engine/Scripts/pycmake/)&#xa;100% auto-generated CMakeLists.txt" vertex="1">
+          <mxGeometry height="40" width="350" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="47" parent="45" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1" value="Key Dependencies:" vertex="1">
+          <mxGeometry height="20" width="350" y="63" as="geometry" />
+        </mxCell>
+        <mxCell id="48" parent="45" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" value="Boost.Filesystem (Heavy, slow build)&#xa;spdlog (Logging backend)&#xa;mimalloc (Default allocator)&#xa;zstd (Compression)&#xa;Botan3 (RSA encryption)&#xa;Tracy (Optional profiler)&#xa;magic_enum, Sol2, TaskFlow, fmt" vertex="1">
+          <mxGeometry height="90" width="350" y="83" as="geometry" />
+        </mxCell>
+        <mxCell id="49" parent="45" style="text;html=1;strokeColor=#bf360c;fillColor=#fbe9e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#bf360c;" value="⚠️ Unity build enabled (with exclusions)&#xa;⚠️ Strict warnings: -Wall -Wextra -pedantic -Werror" vertex="1">
+          <mxGeometry height="40" width="350" y="173" as="geometry" />
+        </mxCell>
+        <mxCell id="50" parent="45" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="CI/CD: GitHub Actions (Boost build timeouts)" vertex="1">
+          <mxGeometry height="30" width="350" y="213" as="geometry" />
+        </mxCell>
+        <mxCell id="51" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=14;fontStyle=1" value="💎 Type System &amp; Constraints" vertex="1">
+          <mxGeometry height="180" width="350" x="870" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="52" parent="51" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;" value="TFLOAT = TFP64 (Double precision - unusual!)&#xa;TFBYTE = std::byte, TSIZE = TUINT64" vertex="1">
+          <mxGeometry height="40" width="350" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="53" parent="51" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="C++20 with C++23 extensions" vertex="1">
+          <mxGeometry height="25" width="350" y="63" as="geometry" />
+        </mxCell>
+        <mxCell id="54" parent="51" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="❌ NO exceptions (Use HLVM_ASSERT)&#xa;❌ NO RTTI (Performance)&#xa;❌ NO auto in critical paths&#xa;❌ NO type suppression (as any, @ts-ignore)" vertex="1">
+          <mxGeometry height="60" width="350" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="55" parent="51" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="FString (UTF-8) + TCharArray&amp;lt;N&amp;gt; (Stack-allocated)" vertex="1">
+          <mxGeometry height="25" width="350" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="56" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#ffcdd2;strokeColor=#d32f2f;fontSize=14;fontStyle=1" value="🚧 WIP / Known Issues" vertex="1">
+          <mxGeometry height="140" width="400" x="50" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="57" parent="56" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="VMMallocator: Deprecated (Use mimalloc)&#xa;FiberPool: Broken (Work-stealing inconsistent)&#xa;FName Pooling: Planned (Not started)&#xa;Async I/O: io_uring under evaluation&#xa;Windows Support: Partial (Secondary platform)" vertex="1">
+          <mxGeometry height="80" width="400" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="58" parent="56" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="CI/CD Pipeline: Incredibly slow (Boost build)" vertex="1">
+          <mxGeometry height="25" width="400" y="103" as="geometry" />
+        </mxCell>
+        <mxCell id="59" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#e0f7fa;strokeColor=#006064;fontSize=14;fontStyle=1" value="🤖 For LLM Agents: Best Practices" vertex="1">
+          <mxGeometry height="140" width="360" x="490" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="60" parent="59" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="✅ Match existing patterns (Common/Public/Core/)&#xa;✅ Use GMallocator, HLVM_ASSERT, LOCK_GUARD&#xa;✅ Stack allocators for temporaries&#xa;✅ Tests in Common/Test/ (RECORD macro)&#xa;✅ Run lsp_diagnostics after edits" vertex="1">
+          <mxGeometry height="80" width="360" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="61" parent="59" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="❌ Never bypass allocator (No raw malloc/free)" vertex="1">
+          <mxGeometry height="25" width="360" y="103" as="geometry" />
+        </mxCell>
+        <mxCell id="62" parent="1" style="swimlane;html=1;startSize=23;horizontal=1;container=1;collapsible=0;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;resizeLast=0;fillColor=#f5f5f5;strokeColor=#9e9e9e;fontSize=14;fontStyle=1" value="📂 File Structure" vertex="1">
+          <mxGeometry height="140" width="310" x="890" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="63" parent="62" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="Common/Public/ (91 headers)&#xa;Common/Private/ (39 sources)&#xa;Common/Test/ (27 tests)&#xa;Runtime/ (Engine subsystems)" vertex="1">
+          <mxGeometry height="60" width="310" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="64" parent="62" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" value="~65K LOC in Common module" vertex="1">
+          <mxGeometry height="25" width="310" y="83" as="geometry" />
+        </mxCell>
+        <mxCell id="65" edge="1" parent="1" source="10" style="endArrow=classic;html=1;strokeColor=#000000;strokeWidth=2;" target="11" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="575" y="153" as="sourcePoint" />
+            <mxPoint x="575" y="143" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="66" edge="1" parent="1" source="11" style="endArrow=classic;html=1;strokeColor=#000000;strokeWidth=2;" target="13" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="575" y="153" as="sourcePoint" />
+            <mxPoint x="575" y="243" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="67" connectable="0" parent="66" style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;fontSize=10;fontColor=#000000;" value="Zero Dependencies&#xa;on Runtime" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
