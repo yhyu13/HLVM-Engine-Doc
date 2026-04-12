@@ -1,0 +1,1191 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://shader-slang.org/slang/design/overview.html
+Subject: An overview of the Slang Compiler | slang
+Date: Sun, 12 Apr 2026 21:19:05 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--DgJRRsteT2TMHvIRdjHztRJurTXyBVch3Fci5syYPp----"
+
+
+------MultipartBoundary--DgJRRsteT2TMHvIRdjHztRJurTXyBVch3Fci5syYPp----
+Content-Type: text/html
+Content-ID: <frame-160DC9880B62485B286121F7F90B752E@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://shader-slang.org/slang/design/overview.html
+
+<!DOCTYPE html><html lang=3D"en-US"><head><meta http-equiv=3D"Content-Type"=
+ content=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"te=
+xt/css" href=3D"cid:css-146a8fab-6a63-466c-86ab-0a7a45737543@mhtml.blink" /=
+>
+   =20
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1">
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+    <link rel=3D"stylesheet" href=3D"https://shader-slang.org/slang/assets/=
+css/style.css?v=3Df09c7e8f48aec3adcce27421d516436ea9dff7f7">
+    <link rel=3D"stylesheet" type=3D"text/css" href=3D"https://shader-slang=
+.org/slang/assets/css/print.css" media=3D"print">
+    <!--[if lt IE 9]>
+    <script src=3D"//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>An overview of the Slang Compiler | slang</title>
+<meta name=3D"generator" content=3D"Jekyll v3.10.0">
+<meta property=3D"og:title" content=3D"An overview of the Slang Compiler">
+<meta property=3D"og:locale" content=3D"en_US">
+<meta name=3D"description" content=3D"Making it easier to work with shaders=
+">
+<meta property=3D"og:description" content=3D"Making it easier to work with =
+shaders">
+<link rel=3D"canonical" href=3D"http://shader-slang.org/slang/design/overvi=
+ew.html">
+<meta property=3D"og:url" content=3D"http://shader-slang.org/slang/design/o=
+verview.html">
+<meta property=3D"og:site_name" content=3D"slang">
+<meta property=3D"og:type" content=3D"website">
+<meta name=3D"twitter:card" content=3D"summary">
+<meta property=3D"twitter:title" content=3D"An overview of the Slang Compil=
+er">
+
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head=
+-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel=3D"shortcut icon" type=3D"image/x-icon" href=3D"/slang/favico=
+n.ico" -->
+
+<!-- end custom head snippets -->
+
+  <base href=3D"https://shader-slang.org/slang/design/overview.html"></head=
+>
+
+  <body class=3D"">
+    <div id=3D"container">
+      <div class=3D"inner">
+
+        <header>
+          <h1>An overview of the Slang Compiler</h1>
+          <h2>Making it easier to work with shaders</h2>
+        </header>
+        <section id=3D"downloads" class=3D"clearfix">
+         =20
+=09
+        </section>
+        <hr>
+        <section id=3D"main_content">
+          <h1 id=3D"an-overview-of-the-slang-compiler">An overview of the S=
+lang Compiler</h1>
+
+<p>This document will attempt to walk through the overall flow of the Slang=
+ compiler, as an aid to developers who are trying to get familiar with the =
+codebase and its design.
+More emphasis will be given to places where the compiler design is nontradi=
+tional, or might surprise newcomers; things that are straightforward won=E2=
+=80=99t get much detail.</p>
+
+<h2 id=3D"high-level-concepts">High-Level Concepts</h2>
+
+<p>Compilation is always performed in the context of a <em>compile request<=
+/em>, which bundles together the options, input files, and request for code=
+ generation.
+Inside the code, there is a type <code class=3D"language-plaintext highligh=
+ter-rouge">CompileRequest</code> to represent this.</p>
+
+<p>The user specifies some number of <em>translation units</em> (represente=
+d in the code as a <code class=3D"language-plaintext highlighter-rouge">Tra=
+nslationUnitRequest</code>) which comprise some number of <em>sources</em> =
+(files or strings).
+HLSL follows the traditional C model where a =E2=80=9Ctranslation unit=E2=
+=80=9D is more or less synonymous with a source file, so when compiling HLS=
+L code the command-line <code class=3D"language-plaintext highlighter-rouge=
+">slangc</code> will treat each source file as its own translation unit.
+For Slang code, the command-line tool will by default put all source files =
+into a single translation unit (so that they represent a shared namespace0)=
+.</p>
+
+<p>The user can also specify some number of <em>entry points</em> in each t=
+ranslation unit (<code class=3D"language-plaintext highlighter-rouge">Entry=
+PointRequest</code>), which combines the name of a function to compile with=
+ the pipeline stage to compile for.</p>
+
+<p>In a single compile request, we can generate code for zero or more <em>t=
+argets</em> (represented with <code class=3D"language-plaintext highlighter=
+-rouge">TargetRequest</code>) a target defines both the format for output c=
+ode (e.g., DXIL or SPIR-V) and a <em>profile</em> that specifies the capabi=
+lity level to assume (e.g., =E2=80=9CShader Model 5.1=E2=80=9D).</p>
+
+<p>It might not be immediately clear why we have such fine-grained concepts=
+ as this, but it ends up being quite important to decide which pieces of th=
+e compiler are allowed to depend on which pieces of information (e.g., whet=
+her or not a phase of compilation gets to depend on the chosen target).</p>
+
+<h2 id=3D"the-front-end">The =E2=80=9CFront End=E2=80=9D</h2>
+
+<p>The job of the Slang front-end is to turn textual source code into a com=
+bination of code in our custom intermediate representation (IR) plus layout=
+ and binding information for shader parameters.</p>
+
+<h3 id=3D"lexing">Lexing</h3>
+
+<p>The first step in the compiler (after a source file has been loaded into=
+ memory) is to <em>lex</em> it.
+The <code class=3D"language-plaintext highlighter-rouge">Lexer</code> type =
+is implement in <code class=3D"language-plaintext highlighter-rouge">lexer.=
+{h,cpp}</code> and produces <code class=3D"language-plaintext highlighter-r=
+ouge">Token</code>s that represent the contents of the file on-demand as re=
+quested by the next phase of compilation.</p>
+
+<p>Each token stores a <code class=3D"language-plaintext highlighter-rouge"=
+>TokenCode</code> that indicates the kind of token, the raw text of the tok=
+en, and the location in the source code where it is located.
+Source locations use a somewhat clever encoding to avoid being bloated (the=
+y are a single integer rather than separate file, line, and column fields).=
+</p>
+
+<p>We don=E2=80=99t make any attempt in the lexer to extract the actual val=
+ue of integer and floating-point literals; we just store the raw text.
+We also don=E2=80=99t try to distinguish keywords from identifiers; keyword=
+s show up as ordinary identifier tokens.</p>
+
+<p>Much of the complexity (and inefficiency) in the current lexer is derive=
+d from the need to support C-isms like backspace line continuation, and spe=
+cial case rules like allowing <code class=3D"language-plaintext highlighter=
+-rouge">&lt;&gt;</code> to delimit a file name string after a <code class=
+=3D"language-plaintext highlighter-rouge">#include</code>.</p>
+
+<h3 id=3D"preprocessing">Preprocessing</h3>
+
+<p>The preprocessor (<code class=3D"language-plaintext highlighter-rouge">P=
+reprocessor</code>) in <code class=3D"language-plaintext highlighter-rouge"=
+>preprocessor.{h,cpp}</code> deals with <code class=3D"language-plaintext h=
+ighlighter-rouge">#include</code> constructs, macro expansions, etc.
+It pulls tokens from the lexer as needed (making sure to set flags to contr=
+ol the lexer behavior when required) and uses a limited lookahead to decide=
+ what to do with each token.</p>
+
+<p>The preprocessor maintains a stack of input streams, with the original s=
+ource file at the bottom, and pushes entries for <code class=3D"language-pl=
+aintext highlighter-rouge">#include</code>d files, macros to expand etc.</p=
+>
+
+<p>Macro definitions store a sequence of already-lexed tokens, and expansio=
+n simply =E2=80=9Creplays=E2=80=9D these tokens.
+Expansion keeps a notion of an =E2=80=9Cenvironment=E2=80=9D for looking up=
+ identifiers and mapping them to macro definitions.
+Calling through to a function-style macro creates a fresh environment that =
+maps the macro parameter names to pseudo-macros for the arguments.</p>
+
+<p>We still tokenize code in inactive preprocessor conditionals, but don=E2=
+=80=99t evaluate preprocessor directives inside inactive blocks (except tho=
+se that may change the active/inactive state).
+Preprocessor directives are each handled as a callback on the preprocessor =
+state and are looked up by name; adding a new directive (if we ever had a r=
+eason to) is a fairly simple task.</p>
+
+<p>One important detail of the preprocessor is that it runs over a full sou=
+rce file at once and produces a flat array of <code class=3D"language-plain=
+text highlighter-rouge">Token</code>s, so that there is no direct interacti=
+on between the parser and preprocessor.</p>
+
+<h3 id=3D"parsing">Parsing</h3>
+
+<p>The parser (<code class=3D"language-plaintext highlighter-rouge">Parser<=
+/code> in <code class=3D"language-plaintext highlighter-rouge">parser.{h,cp=
+p}</code>) is mostly a straightforward recursive-descent parser.
+Because the input is already tokenized before we start, we can use arbitrar=
+y lookahead, although we seldom look ahead more than one token.</p>
+
+<p>Traditionally, parsing of C-like languages requires context-sensitive pa=
+rsing techniques to distinguish types from values, and deal with stuff like=
+ the C++ =E2=80=9Cmost vexing parse.=E2=80=9D
+Slang instead uses heuristic approaches: for example, when we encounter an =
+<code class=3D"language-plaintext highlighter-rouge">&lt;</code> after an i=
+dentifier, we first try parsing a generic argument list with a closing <cod=
+e class=3D"language-plaintext highlighter-rouge">&gt;</code> and then look =
+at the next token to determine if this looks like a generic application (in=
+ which case we continue from there) or not (in which case we backtrack).</p=
+>
+
+<p>There are still some cases where we use lookup in the current environmen=
+t to see if something is a type or a value, but officially we strive to sup=
+port out-of-order declarations like most modern languages.
+In order to achieve that goal we will eventually move to a model where we p=
+arse the bodies of declarations and functions in a later pass, after we hav=
+e resolved names in the global scope.</p>
+
+<p>One important choice in the parser is that we strive to avoid hard-codin=
+g keywords as much as possible.
+We already track an environment for C-like parsing, and we simply extend th=
+at so that we also look up declaration and statement keywords in the enviro=
+nment.
+This means that most of the language =E2=80=9Ckeywords=E2=80=9D in Slang ar=
+en=E2=80=99t keywords at all, and instead are just identifiers that happen =
+to be bound to syntax in the default environment.
+Syntax declarations are associated with a callback that is invoked to parse=
+ the construct they name.</p>
+
+<p>The design of treating syntax as ordinary declarations has a long-term m=
+otivation (we=E2=80=99d like to support a flexible macro system) but it als=
+o has short-term practical benefits.
+It is easy for us to add new modifier keywords to the language without touc=
+hing the lexer or parser (just adding them to the core module), and we also=
+ don=E2=80=99t have to worry about any of Slang=E2=80=99s extended construc=
+t (e.g., <code class=3D"language-plaintext highlighter-rouge">import</code>=
+) breaking existing HLSL code that just happens to use one of those new key=
+words as a local variable name.</p>
+
+<p>What the parser produces is an abstract syntax tree (AST).
+The AST currently uses a strongly-typed C++ class hierarchy with a =E2=80=
+=9Cvisitor=E2=80=9D API generated via some ugly macro magic.
+Dynamic casting using C++ RTTI is used in many places to check the class of=
+ an AST node; we aren=E2=80=99t happy with this but also haven=E2=80=99t ha=
+d time to implement a better/faster solution.</p>
+
+<p>In the parsed AST, both types and expressions use the same representatio=
+n (because in an expression like <code class=3D"language-plaintext highligh=
+ter-rouge">A(B)</code> it is possible that <code class=3D"language-plaintex=
+t highlighter-rouge">A</code> will resolve to a type, or to a function, and=
+ we don=E2=80=99t know which yet).</p>
+
+<p>One slightly odd design choice in the parser is that it attaching lexica=
+l scoping information to the syntax nodes for identifiers, and any other AS=
+T node that need access to the scope/environment where it was defined. This=
+ is a choice we will probably change at some point, but it is deeply ingrai=
+ned right now.</p>
+
+<h3 id=3D"semantic-checking">Semantic Checking</h3>
+
+<p>The semantic checking step (<code class=3D"language-plaintext highlighte=
+r-rouge">check.{h,cpp}</code>) is, not surprisingly, the most complicated a=
+nd messiest bit of the compiler today.
+The basic premise is simple: recursively walk the entire AST and apply sema=
+ntic checking to each construct.</p>
+
+<p>Semantic checking applies to one translation unit at a time.
+It has access to the list of entry points for the translation unit (so it c=
+an validate them), but it <em>not</em> allowed to depend on the compilation=
+ target(s) the user might have selected.</p>
+
+<p>Semantic checking of an expression or type term can yield the same AST n=
+ode, with type information added, or it can return newly constructed AST ne=
+eds (e.g., when an implicit cast needs to be inserted).
+Unchecked identifiers or member references are always resolved to have a po=
+inter to the exact declaration node they are referencing.</p>
+
+<p>Types are represented with a distinct class hierarchy from AST nodes, wh=
+ich is also used for a general notion of compile-time values which can be u=
+sed to instantiate generic types/functions/etc.
+An expression that ends up referring to a type will have a <code class=3D"l=
+anguage-plaintext highlighter-rouge">TypeType</code> as its type, which wil=
+l hold the actual type that the expression represents.</p>
+
+<p>The most complicated thing about semantic checking is that we strive to =
+support out-of-order declarations, which means we may need to check a funct=
+ion declaration later in the file before checking a function body early in =
+the file.
+In turn, that function declaration might depend on a reference to a nested =
+type declared somewhere else, etc.
+We currently solve this issue by doing some amount of on-demand checking; w=
+hen we have a reference to a function declaration and we need to know its t=
+ype, we will first check if the function has been through semantic checking=
+ yet, and if not we will go ahead and recursively type check that function =
+before we proceed.</p>
+
+<p>This kind of unfounded recursion can lead to real problems (especially w=
+hen the user might write code with circular dependencies), so we have made =
+some attempts to more strictly =E2=80=9Cphase=E2=80=9D the semantic checkin=
+g, but those efforts have not yet been done systematically.</p>
+
+<p>When code involved generics and/or interfaces, the semantic checking pha=
+se is responsible for ensuring that when a type claims to implement an inte=
+rface it provides all of the requirements of that interface, and it records=
+ the mapping from requirements to their implementations for later use. Simi=
+larly, the body of a generic is checked to make sure it uses type parameter=
+s in ways that are consistent with their constraints, and the AST is amende=
+d to make it explicit when an interface requirement is being employed.</p>
+
+<h3 id=3D"lowering-and-mandatory-optimizations">Lowering and Mandatory Opti=
+mizations</h3>
+
+<p>The lowering step (<code class=3D"language-plaintext highlighter-rouge">=
+lower-to-ir.{h,cpp}</code>) is responsible for converting semantically vali=
+d ASTs into an intermediate representation that is more suitable for specia=
+lization, optimization, and code generation.
+The main thing that happens at this step is that a lot of the =E2=80=9Csuga=
+r=E2=80=9D in a high-level language gets baked out. For example:</p>
+
+<ul>
+  <li>A =E2=80=9Cmember function=E2=80=9D in a type will turn into an ordin=
+ary function that takes an initial <code class=3D"language-plaintext highli=
+ghter-rouge">this</code> parameter</li>
+  <li>A <code class=3D"language-plaintext highlighter-rouge">struct</code> =
+type nested in another <code class=3D"language-plaintext highlighter-rouge"=
+>struct</code> will turn into an ordinary top-level <code class=3D"language=
+-plaintext highlighter-rouge">struct</code></li>
+  <li>Compound expressions will turn into sequences of instructions that ba=
+ke the order of evaluation</li>
+  <li>High-level control-flow statements will get resolved to a control-flo=
+w graph (CFG) of basic blocks</li>
+</ul>
+
+<p>The lowering step is done once for each translation unit, and like seman=
+tic checking it does <em>not</em> depend on any particular compilation targ=
+et.
+During this step we attach =E2=80=9Cmangled=E2=80=9D names to any imported =
+or exported symbols, so that each function overload, etc. has a unique name=
+.</p>
+
+<p>After IR code has been generated for a translation unit (now called a =
+=E2=80=9Cmodule=E2=80=9D) we next perform a set of =E2=80=9Cmandatory=E2=80=
+=9D optimizations, including SSA promotion and simple copy propagation and =
+elimination of dead control-flow paths.
+These optimizations are not primarily motivated by a desire to speed up cod=
+e, but rather to ensure that certain =E2=80=9Cobvious=E2=80=9D simplificati=
+ons have been performed before the next step of validation.</p>
+
+<p>After the IR has been =E2=80=9Coptimized=E2=80=9D we perform certain val=
+idation/checking tasks that would have been difficult or impossible to perf=
+orm on the AST.
+For example, we can validate that control flow never reached the end of a n=
+on-<code class=3D"language-plaintext highlighter-rouge">void</code> functio=
+n, and issue an error otherwise.
+There are other validation tasks that can/should be performed at this step,=
+ although not all of them are currently implemented:</p>
+
+<ul>
+  <li>
+    <p>We should check that any <code class=3D"language-plaintext highlight=
+er-rouge">[unroll]</code> loops can actually be unrolled, by ensuring that =
+their termination conditions can be resolved to a compile-time constant (ev=
+en if we don=E2=80=99t know the constant yet)</p>
+  </li>
+  <li>
+    <p>We should check that any resource types are being used in ways that =
+can be statically resolved (e.g., that the code never conditionally compute=
+s a resource to reference), since this is a requirement for all our current=
+ targets</p>
+  </li>
+  <li>
+    <p>We should check that the operands to any operation that requires a c=
+ompile-time constant (e.g., the texel offset argument to certain <code clas=
+s=3D"language-plaintext highlighter-rouge">Sample()</code> calls) are passe=
+d values that end up being compile-time constants</p>
+  </li>
+</ul>
+
+<p>The goal is to eliminate any possible sources of failure in low-level co=
+de generation, without needing to have a global view of all the code in a p=
+rogram.
+Any error conditions we have to push off until later starts to limit the va=
+lue of our separate compilation support.</p>
+
+<h3 id=3D"parameter-binding-and-type-layout">Parameter Binding and Type Lay=
+out</h3>
+
+<p>The next phase of parameter binding (<code class=3D"language-plaintext h=
+ighlighter-rouge">parameter-binding.{h,cpp}</code>) is independent of IR ge=
+neration, and proceeds based on the AST that came out of semantic checking.
+Parameter binding is the task of figuring out what locations/bindings/offse=
+ts should be given to all shader parameters referenced by the user=E2=80=99=
+s code.</p>
+
+<p>Parameter binding is done once for each target (because, e.g., Vulkan ma=
+y bind parameters differently than D3D12), and it is done for the whole com=
+pile request (all translation units) rather than one at a time.
+This is because when users compile something like HLSL vertex and fragment =
+shaders in distinct translation units, they will often share the =E2=80=9Cs=
+ame=E2=80=9D parameter via a header, and we need to ensure that it gets jus=
+t one location.</p>
+
+<p>At a high level, parameter binding starts by computing the <em>type layo=
+ut</em> of each shader parameter.
+A type layout describes the amount of registers/bindings/bytes/etc. that a =
+type consumes, and also encodes the information needed to compute offsets/r=
+egisters for individual <code class=3D"language-plaintext highlighter-rouge=
+">struct</code> fields or array elements.</p>
+
+<p>Once we know how much space each parameter consumes, we then inspect an =
+explicit binding information (e.g., <code class=3D"language-plaintext highl=
+ighter-rouge">register</code> modifiers) that are relevant for the target, =
+and build a data structure to record what binding ranges are already consum=
+ed.
+Finally, we go through any parameters without explicit binding information =
+and assign them the next available range of the appropriate size (in a firs=
+t-fit fashion).</p>
+
+<p>The parameter binding/layout information is what the Slang reflection AP=
+I exposes. It is layered directly over the Slang AST so that it accurately =
+reflects the program as the user wrote it, and not the result of lowering t=
+hat program to our IR.</p>
+
+<p>This document describes parameter binding as a =E2=80=9Cfront end=E2=80=
+=9D activity, but in practice it is something that could be done in the fro=
+nt-end, the back-end or both.
+When shader code involves generic type parameters, complete layout informat=
+ion cannot be generated until the values of these parameters are fully know=
+n, and in practice that might not happen until the back end.</p>
+
+<h3 id=3D"serialization">Serialization</h3>
+
+<p>It is not yet fully implemented, but our intention is that the last thin=
+g the front-end does is to serialize the following information:</p>
+
+<ul>
+  <li>
+    <p>A stripped-down version of the checked AST for each translation unit=
+ including declarations/types, but not function bodies</p>
+  </li>
+  <li>
+    <p>The IR code for each translation unit</p>
+  </li>
+  <li>
+    <p>The binding/layout information for each target</p>
+  </li>
+</ul>
+
+<p>The above information is enough to type-check a subsequent module that <=
+code class=3D"language-plaintext highlighter-rouge">import</code>s code com=
+pile in the front-end, to link against its IR code, or to load and reflect =
+type and binding information.</p>
+
+<h2 id=3D"the-back-end">The =E2=80=9CBack End=E2=80=9D</h2>
+
+<p>The Slang back end logically starts with the user specifying:</p>
+
+<ul>
+  <li>
+    <p>An IR module, plus any necessary modules to link in and provide its =
+dependencies</p>
+  </li>
+  <li>
+    <p>An entry point in that module, plus arguments for any generic parame=
+ters that entry point needs</p>
+  </li>
+  <li>
+    <p>A compilation target (e.g., SPIR-V for Vulkan)</p>
+  </li>
+  <li>
+    <p>Parameter binding/layout information for that module and entry point=
+, computed for the chosen target</p>
+  </li>
+</ul>
+
+<p>We eventually want to support compiling multiple entry points in one pas=
+s of the back end, but for now it assumes a single entry point at a time</p=
+>
+
+<h3 id=3D"linking-and-target-specialization">Linking and Target Specializat=
+ion</h3>
+
+<p>The first step we perform is to copy the chosen entry point and anything=
+ it depends on, recursively into a =E2=80=9Cfresh=E2=80=9D IR module.
+We make a copy of things so that any optimization/transformation passes we =
+do for one target don=E2=80=99t alter the code the front-end produced in wa=
+ys that affect other targets.</p>
+
+<p>While copying IR code into the fresh module, we have cases where there m=
+ight be multiple definitions of the same function or other entity.
+In those cases, we apply =E2=80=9Ctarget specialization=E2=80=9D to pick th=
+e definition that is the best for the chosen target.
+This step is where we can select between, say, a built-in definition of the=
+ <code class=3D"language-plaintext highlighter-rouge">saturate</code> funct=
+ion for D3D targets, vs. a hand-written one in a Slang standard module to u=
+se for GLSL-based targets.</p>
+
+<h3 id=3D"api-legalization">API Legalization</h3>
+
+<p>If we are targeting a GLSL-based platform, we need to translate =E2=80=
+=9Cvarying=E2=80=9D shader entry point parameters into global variables use=
+d for cross-stage data passing.
+We also need to translate any =E2=80=9Csystem value=E2=80=9D semantics into=
+ uses of the special built-in <code class=3D"language-plaintext highlighter=
+-rouge">gl_*</code> variables.</p>
+
+<p>We currently handle this kind of API-specific legalization quite early i=
+n the process, performing it right after linking.</p>
+
+<h3 id=3D"generic-specialization">Generic Specialization</h3>
+
+<p>Once the concrete values for generic parameters are know we can set abou=
+t specializing code to the known types.
+We do this by cloning a function/type/whatever and substituting in the conc=
+rete arguments for the parameters.
+This process can be continued as specializing one function may reveal oppor=
+tunities to specialize others.</p>
+
+<p>During this step we also specialize away lookup of interface requirement=
+s through their witness tables, once generic witness-table parameters have =
+been replaced with concrete witness tables.</p>
+
+<p>At the end of specialization, we should have code that makes no use of u=
+ser-defined generics or interfaces.</p>
+
+<h3 id=3D"type-legalization">Type Legalization</h3>
+
+<p>While HLSL and Slang allow a single <code class=3D"language-plaintext hi=
+ghlighter-rouge">struct</code> type to contain both =E2=80=9Cordinary=E2=80=
+=9D data like a <code class=3D"language-plaintext highlighter-rouge">float3=
+</code> and =E2=80=9Cresources=E2=80=9D like a <code class=3D"language-plai=
+ntext highlighter-rouge">Texture2D</code>, the rules for GLSL and SPIR-V ar=
+e more restrictive.
+There are some additional wrinkles that arise for such =E2=80=9Cmixed=E2=80=
+=9D types, so we prefer to always =E2=80=9Clegalize=E2=80=9D the types in t=
+he users code by replacing an aggregate type like:</p>
+
+<div class=3D"language-hlsl highlighter-rouge"><div class=3D"highlight"><pr=
+e class=3D"highlight"><code><span class=3D"k">struct</span> <span class=3D"=
+n">Material</span> <span class=3D"p">{</span> <span class=3D"kt">float4</sp=
+an> <span class=3D"n">baseColor</span><span class=3D"p">;</span> <span clas=
+s=3D"kt">Texture2D</span> <span class=3D"n">detailMap</span><span class=3D"=
+p">;</span> <span class=3D"p">};</span>
+<span class=3D"n">Material</span> <span class=3D"n">gMaterial</span><span c=
+lass=3D"p">;</span>
+</code></pre></div></div>
+
+<p>with separate declarations for ordinary and resource fields:</p>
+
+<div class=3D"language-hlsl highlighter-rouge"><div class=3D"highlight"><pr=
+e class=3D"highlight"><code><span class=3D"k">struct</span> <span class=3D"=
+n">Material</span> <span class=3D"p">{</span> <span class=3D"kt">float4</sp=
+an> <span class=3D"n">baseColor</span><span class=3D"p">;</span> <span clas=
+s=3D"p">}</span>
+
+<span class=3D"n">Material</span> <span class=3D"n">gMaterial</span><span c=
+lass=3D"p">;</span>
+<span class=3D"kt">Texture2D</span> <span class=3D"n">gMaterial_detailMap</=
+span><span class=3D"p">;</span>
+</code></pre></div></div>
+
+<p>Changing the =E2=80=9Cshape=E2=80=9D of a type like this (so that a sing=
+le variable becomes more than one) needs to be done consistently across all=
+ declarations/functions in the program (hence why we do it after specializa=
+tion, so that all concrete types are known).</p>
+
+<h3 id=3D"other-optimizations">Other Optimizations</h3>
+
+<p>We dont=E2=80=99 currently apply many other optimizations on the IR code=
+ in the back-end, under the assumption that the lower-level compilers below=
+ Slang will do some of the =E2=80=9Cheavy lifting.=E2=80=9D</p>
+
+<p>That said, there are certain optimizations that Slang must do eventually=
+, for semantic completeness. One of the most important examples of these is=
+ implementing the semantics of the <code class=3D"language-plaintext highli=
+ghter-rouge">[unroll]</code> attribute, since we can=E2=80=99t always rely =
+on downstream compilers to have a capable unrolling implementation.</p>
+
+<p>We expect that over time it will be valuable for Slang to support a wide=
+r array of optimization passes, as long as they are ones that are considere=
+d =E2=80=9Csafe=E2=80=9D to do above the driver interface, because they won=
+=E2=80=99t interfere with downstream optimization opportunities.</p>
+
+<h3 id=3D"emission">Emission</h3>
+
+<p>Once we have transformed the IR code into something that should be legal=
+ for the chosen target, we emit code in the appropriate format for the targ=
+et. This can be high-level source code (such as HLSL, GLSL, Metal, WGSL, C+=
++, or CUDA) or binary formats (such as SPIR-V, DXIL, PTX, or MetalLib) depe=
+nding on the compilation target.</p>
+
+<p>The emit logic is mostly just a scan over the IR code to emit a high-lev=
+el declaration for each item: an IR structure type becomes a <code class=3D=
+"language-plaintext highlighter-rouge">struct</code> declaration, and IR fu=
+nction becomes a function definition, etc.</p>
+
+<p>In order to make the generated code a bit more readable, the Slang compi=
+ler currently does <em>not</em> emit declarations using their mangled names=
+ and instead tries to emit everything using a name based on how it was orig=
+inally declared.</p>
+
+<p>To improve the readability of function bodies, the emit logic tries to f=
+ind consecutive sequences of IR instructions that it can emit as a single h=
+igh-level language expression. This reduces the number of temporaries in th=
+e output code, but we need to be careful about inserting parentheses to res=
+pect operator precedence, and also to not accidentally change the order of =
+evaluation of code.</p>
+
+<p>When emitting a function body, we need to get from the low-level control=
+ flow graph (CFG) to high-level structured control-flow statements like <co=
+de class=3D"language-plaintext highlighter-rouge">if</code>s and loops. We =
+currently do this on a per-function basis during code emission, using an ad=
+ hoc algorithm based on control-flow structured information we stored in th=
+e IR.
+A future version of the compiler might implement something more complete li=
+ke the =E2=80=9CRelooper=E2=80=9D algorithm used by Emscripten.</p>
+
+<h3 id=3D"downstream-compiler-execution">Downstream Compiler Execution</h3>
+
+<p>For certain targets and compilation paths, we invoke downstream compiler=
+s to generate binary code (and optionally to disassemble that code for cons=
+ole output). For example:</p>
+<ul>
+  <li>DXIL and DXBC targets use dxc and fxc respectively</li>
+  <li>SPIR-V, although generated directly from the Slang IR by default, can=
+ instead use glslang if the <code class=3D"language-plaintext highlighter-r=
+ouge">-emit-spirv-via-glsl</code> option is specified for <code class=3D"la=
+nguage-plaintext highlighter-rouge">slangc</code>. If that option is used, =
+GLSL is emitted from the Slang IR to pass to glslang for SPIR-V generation<=
+/li>
+  <li>PTX generation uses NVRTC</li>
+  <li>MetalLib and MetalLibAssembly targets use the Metal compiler (MetalC)=
+</li>
+</ul>
+
+<p>Targets that have output emitted directly from the Slang IR without the =
+use of downstream compilers include high-level source formats like HLSL, GL=
+SL, Metal, WGSL, C++, and CUDA source, as well as the default SPIR-V binary=
+ generation path.</p>
+
+<p>The Slang compiler also supports a =E2=80=9Cpass through=E2=80=9D mode w=
+here it skips most of the steps outlined so far and just passes text along =
+to downstream compilers directly. This is primarily intended as a debugging=
+ aid for developers working on Slang, since it lets you use the same comman=
+d-line arguments to invoke both Slang compilation and compilation with thes=
+e other compilers.</p>
+
+<h2 id=3D"conclusion">Conclusion</h2>
+
+<p>Hopefully this whirlwind introduction to the flow of the Slang compiler =
+gives some idea of how the project fits together, and makes it easier to di=
+ve into the code and start being productive.</p>
+
+        </section>
+
+        <footer>
+       =20
+          slang is maintained by <a href=3D"https://github.com/shader-slang=
+">shader-slang</a><br>
+       =20
+          This page was generated by <a href=3D"https://pages.github.com/">=
+GitHub Pages</a>.
+        </footer>
+
+      </div>
+    </div>
+ =20
+
+</body></html>
+------MultipartBoundary--DgJRRsteT2TMHvIRdjHztRJurTXyBVch3Fci5syYPp----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://shader-slang.org/slang/assets/css/print.css
+
+@charset "utf-8";
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, b=
+lockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, i=
+mg, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i=
+, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, cap=
+tion, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, emb=
+ed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, se=
+ction, summary, time, mark, audio, video { padding: 0px; margin: 0px; font-=
+style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: =
+inherit; line-height: inherit; font-family: inherit; font-optical-sizing: i=
+nherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-sett=
+ings: inherit; font-variation-settings: inherit; font-language-override: in=
+herit; font-size: 100%; vertical-align: baseline; border: 0px; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, =
+nav, section { display: block; }
+
+body { line-height: 1; }
+
+ol, ul { list-style: none; }
+
+blockquote, q { quotes: none; }
+
+blockquote::before, blockquote::after, q::before, q::after { content: none;=
+ }
+
+table { border-spacing: 0px; border-collapse: collapse; }
+
+body { font-family: "Helvetica Neue", Helvetica, Arial, serif; font-size: 1=
+3px; line-height: 1.5; color: rgb(0, 0, 0); }
+
+a { font-weight: bold; color: rgb(213, 0, 13); }
+
+header { padding-top: 35px; padding-bottom: 10px; }
+
+header h1 { font-size: 48px; font-weight: bold; line-height: 1.2; color: rg=
+b(48, 48, 48); letter-spacing: -1px; }
+
+header h2 { font-size: 24px; font-weight: normal; line-height: 1.3; color: =
+rgb(170, 170, 170); letter-spacing: -1px; }
+
+#downloads { display: none; }
+
+#main_content { padding-top: 20px; }
+
+code, pre { margin-bottom: 30px; font-family: Monaco, "Bitstream Vera Sans =
+Mono", "Lucida Console", Terminal; font-size: 12px; color: rgb(34, 34, 34);=
+ }
+
+code { padding: 0px 3px; }
+
+pre { padding: 20px; overflow: auto; border: 1px solid rgb(221, 221, 221); =
+}
+
+pre code { padding: 0px; }
+
+ul, ol, dl { margin-bottom: 20px; }
+
+table { width: 100%; border: 1px solid rgb(235, 235, 235); }
+
+th { font-weight: 500; }
+
+td { font-weight: 300; text-align: center; border: 1px solid rgb(235, 235, =
+235); }
+
+form { padding: 20px; background: rgb(242, 242, 242); }
+
+h1 { font-size: 2.8em; }
+
+h2 { margin-bottom: 8px; font-size: 22px; font-weight: bold; color: rgb(48,=
+ 48, 48); }
+
+h3 { margin-bottom: 8px; font-size: 18px; font-weight: bold; color: rgb(213=
+, 0, 13); }
+
+h4 { font-size: 16px; font-weight: bold; color: rgb(48, 48, 48); }
+
+h5 { font-size: 1em; color: rgb(48, 48, 48); }
+
+h6 { font-size: 0.8em; color: rgb(48, 48, 48); }
+
+p { margin-bottom: 20px; font-weight: 300; }
+
+a { text-decoration: none; }
+
+p a { font-weight: 400; }
+
+blockquote { padding: 0px 0px 0px 30px; margin-bottom: 20px; font-size: 1.6=
+em; border-left: 10px solid rgb(233, 233, 233); }
+
+ul li { list-style: disc; padding-left: 20px; }
+
+ol li { list-style: decimal; padding-left: 3px; }
+
+dl dd { font-style: italic; font-weight: 100; }
+
+footer { padding-top: 20px; padding-bottom: 30px; margin-top: 40px; font-si=
+ze: 13px; color: rgb(170, 170, 170); }
+
+footer a { color: rgb(102, 102, 102); }
+
+.clearfix::after { display: block; height: 0px; clear: both; visibility: hi=
+dden; content: "."; }
+
+.clearfix { display: inline-block; }
+
+* html .clearfix { height: 1%; }
+
+.clearfix { display: block; }
+------MultipartBoundary--DgJRRsteT2TMHvIRdjHztRJurTXyBVch3Fci5syYPp----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://shader-slang.org/slang/assets/images/hr.png
+
+iVBORw0KGgoAAAANSUhEUgAAAp0AAAABCAQAAAA2592kAAAASUlEQVR4Aa2SMQ4AIAwCy/8fjYO7
+5jzdOFCblEzmdOIpJ5tpLVySFUkxkdKegK3fOfD75Fck/5CifPlr/Cb607tes32WN4S1bQG4FyUD
+Se/XhgAAAABJRU5ErkJggg==
+
+------MultipartBoundary--DgJRRsteT2TMHvIRdjHztRJurTXyBVch3Fci5syYPp----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://fonts.googleapis.com/css?family=Chivo:900
+
+@charset "utf-8";
+
+@font-face { font-family: Chivo; font-style: normal; font-weight: 900; src:=
+ url("https://fonts.gstatic.com/s/chivo/v21/va9b4kzIxd1KFppkaRKvDRPJVDf_FRj=
+en2rTJXg.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+12=
+8-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+=
+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: Chivo; font-style: normal; font-weight: 900; src:=
+ url("https://fonts.gstatic.com/s/chivo/v21/va9b4kzIxd1KFppkaRKvDRPJVDf_FRj=
+enmrTJXg.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C=
+7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F,=
+ U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720=
+-A7FF; }
+
+@font-face { font-family: Chivo; font-style: normal; font-weight: 900; src:=
+ url("https://fonts.gstatic.com/s/chivo/v21/va9b4kzIxd1KFppkaRKvDRPJVDf_FRj=
+ekGrT.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2=
+BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+21=
+22, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+------MultipartBoundary--DgJRRsteT2TMHvIRdjHztRJurTXyBVch3Fci5syYPp----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://shader-slang.org/slang/assets/css/style.css?v=f09c7e8f48aec3adcce27421d516436ea9dff7f7
+
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css?family=3DChivo:900");
+
+.highlight table td { padding: 5px; }
+
+.highlight table pre { margin: 0px; }
+
+.highlight, .highlight .w { color: rgb(208, 208, 208); }
+
+.highlight .err { color: rgb(21, 21, 21); background-color: rgb(172, 65, 66=
+); }
+
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .=
+cs { color: rgb(136, 136, 136); }
+
+.highlight .cp { color: rgb(244, 191, 117); }
+
+.highlight .nt { color: rgb(244, 191, 117); }
+
+.highlight .o, .highlight .ow { color: rgb(208, 208, 208); }
+
+.highlight .p, .highlight .pi { color: rgb(208, 208, 208); }
+
+.highlight .gi { color: rgb(144, 169, 89); }
+
+.highlight .gd { color: rgb(172, 65, 66); }
+
+.highlight .gh { color: rgb(106, 159, 181); font-weight: bold; }
+
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .=
+kv { color: rgb(170, 117, 159); }
+
+.highlight .kc { color: rgb(210, 132, 69); }
+
+.highlight .kt { color: rgb(210, 132, 69); }
+
+.highlight .kd { color: rgb(210, 132, 69); }
+
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .=
+s2, .highlight .sh, .highlight .sx, .highlight .s1 { color: rgb(144, 169, 8=
+9); }
+
+.highlight .sr { color: rgb(117, 181, 170); }
+
+.highlight .si { color: rgb(143, 85, 54); }
+
+.highlight .se { color: rgb(143, 85, 54); }
+
+.highlight .nn { color: rgb(244, 191, 117); }
+
+.highlight .nc { color: rgb(244, 191, 117); }
+
+.highlight .no { color: rgb(244, 191, 117); }
+
+.highlight .na { color: rgb(106, 159, 181); }
+
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .=
+il, .highlight .mo, .highlight .mb, .highlight .mx { color: rgb(144, 169, 8=
+9); }
+
+.highlight .ss { color: rgb(144, 169, 89); }
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, b=
+lockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, i=
+mg, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i=
+, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, cap=
+tion, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, emb=
+ed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, se=
+ction, summary, time, mark, audio, video { padding: 0px; margin: 0px; font-=
+style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: =
+inherit; line-height: inherit; font-family: inherit; font-optical-sizing: i=
+nherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-sett=
+ings: inherit; font-variation-settings: inherit; font-language-override: in=
+herit; font-size: 100%; vertical-align: baseline; border: 0px; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, =
+nav, section { display: block; }
+
+body { line-height: 1; }
+
+ol, ul { list-style: none; }
+
+blockquote, q { quotes: none; }
+
+blockquote::before, blockquote::after, q::before, q::after { content: none;=
+ }
+
+table { border-spacing: 0px; border-collapse: collapse; }
+
+body { font-family: "Helvetica Neue", Helvetica, Arial, serif; font-size: 1=
+em; line-height: 1.5; color: rgb(109, 109, 109); text-shadow: rgba(255, 255=
+, 255, 0.8) 0px 1px 0px; background: url("../images/body-bg.png") 0px 0px r=
+epeat rgb(231, 231, 231); }
+
+a { color: rgb(213, 0, 13); }
+
+a:hover { color: rgb(197, 0, 12); }
+
+header { padding-top: 35px; padding-bottom: 25px; }
+
+header h1 { font-family: Chivo, "Helvetica Neue", Helvetica, Arial, serif; =
+font-size: 48px; font-weight: 900; line-height: 1.2; color: rgb(48, 48, 48)=
+; letter-spacing: -1px; }
+
+header h2 { font-size: 24px; font-weight: normal; line-height: 1.3; color: =
+rgb(170, 170, 170); letter-spacing: -1px; }
+
+#container { min-height: 595px; background: url("../images/highlight-bg.jpg=
+") 50% 0px no-repeat transparent; }
+
+.inner { width: 620px; margin: 0px auto; }
+
+#container .inner img { max-width: 100%; }
+
+#downloads { margin-bottom: 40px; }
+
+a.button { display: block; float: left; width: 179px; padding: 12px 8px; ma=
+rgin-right: 14px; font-size: 15px; font-weight: bold; line-height: 25px; co=
+lor: rgb(48, 48, 48); background: linear-gradient(to top, rgb(253, 253, 253=
+) 0%, rgb(242, 242, 242) 100%); border-width: 1px; border-style: solid; bor=
+der-color: rgb(203, 203, 203) rgb(183, 183, 183) rgb(179, 179, 179); box-sh=
+adow: rgb(232, 232, 232) 0px 1px 5px; border-radius: 30px; }
+
+a.button:hover { background: -webkit-linear-gradient(top, rgb(253, 253, 253=
+) 0%, rgb(246, 246, 246) 100%); border-width: 1px; border-style: solid; bor=
+der-color: rgb(183, 183, 183) rgb(179, 179, 179) rgb(179, 179, 179); }
+
+a.button span { display: block; height: 23px; padding-left: 50px; }
+
+#download-zip span { background: url("../images/zip-icon.png") 12px 50% no-=
+repeat transparent; }
+
+#download-tar-gz span { background: url("../images/tar-gz-icon.png") 12px 5=
+0% no-repeat transparent; }
+
+#view-on-github span { background: url("../images/octocat-icon.png") 12px 5=
+0% no-repeat transparent; }
+
+#view-on-github { margin-right: 0px; }
+
+code, pre { margin-bottom: 30px; font-family: Monaco, "Bitstream Vera Sans =
+Mono", "Lucida Console", Terminal, monospace; font-size: 14px; color: rgb(3=
+4, 34, 34); }
+
+code { padding: 0px 3px; background-color: rgb(242, 242, 242); border: 1px =
+solid rgb(221, 221, 221); }
+
+pre { padding: 20px; overflow: auto; color: rgb(242, 242, 242); text-shadow=
+: none; background: rgb(48, 48, 48); }
+
+pre code { padding: 0px; color: rgb(242, 242, 242); background-color: rgb(4=
+8, 48, 48); border: none; }
+
+ul, ol, dl { margin-bottom: 20px; }
+
+hr { height: 1px; padding-bottom: 1em; margin-top: 1em; line-height: 1px; b=
+ackground: url("../images/hr.png") 50% 0px no-repeat transparent; border: n=
+one; }
+
+strong { font-weight: bold; }
+
+em { font-style: italic; }
+
+table { width: 100%; border: 1px solid rgb(235, 235, 235); }
+
+th { font-weight: 500; }
+
+td { font-weight: 300; text-align: center; border: 1px solid rgb(235, 235, =
+235); }
+
+form { padding: 20px; background: rgb(242, 242, 242); }
+
+h1 { font-size: 32px; }
+
+h2 { margin-bottom: 8px; font-size: 22px; font-weight: bold; color: rgb(48,=
+ 48, 48); }
+
+h3 { margin-bottom: 8px; font-size: 18px; font-weight: bold; color: rgb(213=
+, 0, 13); }
+
+h4 { font-size: 16px; font-weight: bold; color: rgb(48, 48, 48); }
+
+h5 { font-size: 1em; color: rgb(48, 48, 48); }
+
+h6 { font-size: 0.8em; color: rgb(48, 48, 48); }
+
+p { margin-bottom: 20px; font-weight: 300; }
+
+a { text-decoration: none; }
+
+p a { font-weight: 400; }
+
+blockquote { padding: 0px 0px 0px 30px; margin-bottom: 20px; font-size: 1.6=
+em; border-left: 10px solid rgb(233, 233, 233); }
+
+ul li { list-style: disc; padding-left: 20px; }
+
+ol li { list-style: decimal; padding-left: 3px; }
+
+dl dt { color: rgb(48, 48, 48); }
+
+footer { padding-top: 20px; padding-bottom: 30px; margin-top: 40px; font-si=
+ze: 13px; color: rgb(170, 170, 170); background: url("../images/hr.png") 0p=
+x 0px no-repeat transparent; }
+
+footer a { color: rgb(102, 102, 102); }
+
+footer a:hover { color: rgb(68, 68, 68); }
+
+.clearfix::after { display: block; height: 0px; clear: both; visibility: hi=
+dden; content: "."; }
+
+.clearfix { display: inline-block; }
+
+* html .clearfix { height: 1%; }
+
+.clearfix { display: block; }
+
+@media only screen and (max-width: 767px) {
+  header { padding-top: 10px; padding-bottom: 10px; }
+  #downloads { margin-bottom: 25px; }
+  #download-zip, #download-tar-gz { display: none; }
+  .inner { width: 94%; margin: 0px auto; }
+  ul li { margin-left: 10px; padding-left: 10px; }
+  ol li { margin-left: 10px; }
+}
+
+a:hover { text-decoration: underline; }
+
+h3 { color: rgb(54, 54, 54); }
+
+h4 { color: rgb(54, 54, 54); }
+
+blockquote { background-color: rgb(242, 242, 242); padding-top: 10px; paddi=
+ng-bottom: 5px; }
+
+blockquote p { font-size: 16px; font-weight: 400; margin-bottom: 5px; color=
+: rgb(32, 32, 32); }
+
+body { color: initial; text-shadow: none; background: none; }
+
+#container { background: none; }
+
+.highlight .cm { color: rgb(20, 139, 4); }
+
+.highlight .cp { color: rgb(20, 139, 4); }
+
+.highlight .c1 { color: rgb(20, 139, 4); }
+
+.highlight .cs { color: rgb(20, 139, 4); }
+
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf { color: rgb=
+(20, 139, 4); }
+
+.highlight .err { color: rgb(166, 23, 23); background-color: rgb(227, 210, =
+210); }
+
+.highlight .gd { color: rgb(0, 0, 0); background-color: rgb(255, 221, 221);=
+ }
+
+.highlight .ge { color: rgb(0, 0, 0); font-style: italic; }
+
+.highlight .gr { color: rgb(170, 0, 0); }
+
+.highlight .gh { color: rgb(153, 153, 153); }
+
+.highlight .gi { color: rgb(0, 0, 0); background-color: rgb(221, 255, 221);=
+ }
+
+.highlight .go { color: rgb(136, 136, 136); }
+
+.highlight .gp { color: rgb(85, 85, 85); }
+
+.highlight .gu { color: rgb(170, 170, 170); }
+
+.highlight .gt { color: rgb(170, 0, 0); }
+
+.highlight .kc { color: rgb(18, 67, 212); }
+
+.highlight .kd { color: rgb(18, 67, 212); }
+
+.highlight .kn { color: rgb(18, 67, 212); }
+
+.highlight .kp { color: rgb(18, 67, 212); }
+
+.highlight .kr { color: rgb(18, 67, 212); }
+
+.highlight .kt { color: rgb(18, 67, 212); }
+
+.highlight .k, .highlight .kv { color: rgb(18, 67, 212); }
+
+.highlight .m, .highlight .mb, .highlight .mx, .highlight .mi, .highlight .=
+mf { color: rgb(114, 17, 194); }
+
+.highlight .sa { color: rgb(0, 0, 0); }
+
+.highlight .sb { color: rgb(221, 17, 68); }
+
+.highlight .sc { color: rgb(221, 17, 68); }
+
+.highlight .sd { color: rgb(221, 17, 68); }
+
+.highlight .s2 { color: rgb(221, 17, 68); }
+
+.highlight .se { color: rgb(221, 17, 68); }
+
+.highlight .sh { color: rgb(221, 17, 68); }
+
+.highlight .si { color: rgb(221, 17, 68); }
+
+.highlight .sx { color: rgb(221, 17, 68); }
+
+.highlight .sr { color: rgb(0, 153, 38); }
+
+.highlight .s1 { color: rgb(221, 17, 68); }
+
+.highlight .ss { color: rgb(153, 0, 115); }
+
+.highlight .s, .highlight .dl { color: rgb(221, 17, 68); }
+
+.highlight .na { color: rgb(0, 128, 128); }
+
+.highlight .bp { color: rgb(153, 153, 153); }
+
+.highlight .n { color: black; }
+
+.highlight .nc { color: rgb(17, 171, 185); }
+
+.highlight .nt { color: rgb(17, 171, 185); }
+
+.highlight .vc { color: rgb(0, 128, 128); }
+
+.highlight .vg { color: rgb(0, 128, 128); }
+
+.highlight .vi { color: rgb(0, 128, 128); }
+
+.highlight .nv, .highlight .vm { color: rgb(0, 128, 128); }
+
+.highlight .ow { color: rgb(0, 0, 0); }
+
+.highlight .o { color: rgb(0, 0, 0); }
+
+.highlight .w { color: rgb(0, 0, 0); }
+
+.highlight .p { color: rgb(0, 0, 0); }
+
+code { background-color: initial; border: none; }
+
+pre { color: rgb(0, 0, 0); background: rgb(248, 248, 248); }
+
+pre code { color: rgb(0, 0, 0); background-color: rgb(248, 248, 248); }
+
+.highlight { background: rgb(248, 248, 248); }
+------MultipartBoundary--DgJRRsteT2TMHvIRdjHztRJurTXyBVch3Fci5syYPp----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-146a8fab-6a63-466c-86ab-0a7a45737543@mhtml.blink
+
+@charset "utf-8";
+
+.react-draggable-transparent-selection ::selection { all: inherit; }
+------MultipartBoundary--DgJRRsteT2TMHvIRdjHztRJurTXyBVch3Fci5syYPp------
