@@ -1,0 +1,110 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="第 1 页" id="O8c31eSsi6Ph_Y-onVoJ">
+    <mxGraphModel dx="5640" dy="3334" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#e8f5e9;strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Vulkan Validation" vertex="1">
+          <mxGeometry height="152" width="260" x="46" y="3070" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=#fff8e1;strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Deferred Rendering Passes" vertex="1">
+          <mxGeometry height="572" width="335" x="8" y="2448" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="3" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="FGBufferFillPass&#xa;Layout: CB(258), S(128)&#xa;Set: ViewConstants buffer&#xa;AnisotropicSampler" vertex="1">
+          <mxGeometry height="126" width="244" x="53" y="43" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="3" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="FDeferredLightingPass&#xa;Layout: CB(256), SRV(0,1,2), UAV(384)&#xa;Set: Lighting buffer&#xa;GBuffer textures&#xa;Output texture" vertex="1">
+          <mxGeometry height="174" width="260" x="46" y="219" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="3" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="FDeferredBlitPass&#xa;Layout: SRV(0)&#xa;Set: Source texture" vertex="1">
+          <mxGeometry height="102" width="197" x="77" y="443" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=#fce4ec;strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="SPIR-V Binaries" vertex="1">
+          <mxGeometry height="532" width="322" x="15" y="1866" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="7" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="gbuffer_vs.sblob&#xa;binding 258 (b2+256)" vertex="1">
+          <mxGeometry height="78" width="212" x="63" y="43" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="7" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="gbuffer_ps.sblob&#xa;b256, t0, s128" vertex="1">
+          <mxGeometry height="78" width="178" x="80" y="171" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="7" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="deferred_lighting_cs.sblob&#xa;b256, t0, t1, t2, u384" vertex="1">
+          <mxGeometry height="78" width="247" x="46" y="299" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="7" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="blit_*.sblob&#xa;t0" vertex="1">
+          <mxGeometry height="78" width="138" x="100" y="427" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="slangc --bRegShift 256 --tRegShift 0 --sRegShift 128 --uRegShift 384" vertex="1">
+          <mxGeometry height="124" width="292" x="29" y="1692" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="12" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Register shifts applied" vertex="1">
+          <mxGeometry height="54" width="217" x="46" y="43" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="ShaderMake.cfg" vertex="1">
+          <mxGeometry height="564" width="335" x="8" y="1078" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="14" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="gbuffer_vs.hlsl -T vs" vertex="1">
+          <mxGeometry height="54" width="203" x="74" y="43" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="14" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="gbuffer_ps.hlsl -T ps" vertex="1">
+          <mxGeometry height="54" width="204" x="73" y="147" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="14" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="deferred_lighting_cs.hlsl -T cs" vertex="1">
+          <mxGeometry height="78" width="260" x="46" y="251" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="14" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="blit_vs.hlsl -T vs" vertex="1">
+          <mxGeometry height="54" width="174" x="89" y="379" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="14" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="blit_ps.hlsl -T ps" vertex="1">
+          <mxGeometry height="54" width="175" x="88" y="483" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=#e3f2fd;strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="HLSL Shaders" vertex="1">
+          <mxGeometry height="1020" width="335" x="8" y="8" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="20" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="gbuffer_vs.hlsl&#xa;cbuffer ViewConstants : register(b2)" vertex="1">
+          <mxGeometry height="102" width="260" x="46" y="43" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="20" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="gbuffer_ps.hlsl&#xa;cbuffer MaterialConstants : register(b0)&#xa;Texture2D t_Mat : register(t0)&#xa;SamplerState s_Smp : register(s0)" vertex="1">
+          <mxGeometry height="198" width="260" x="46" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="20" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="deferred_lighting_cs.hlsl&#xa;cbuffer LightingConstants : register(b0)&#xa;Texture2D t_GB0 : register(t0)&#xa;Texture2D t_GB1 : register(t1)&#xa;Texture2D t_GB2 : register(t2)&#xa;RWTexture2D u_Out : register(u0)" vertex="1">
+          <mxGeometry height="294" width="260" x="46" y="443" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="20" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="blit_vs.hlsl" vertex="1">
+          <mxGeometry height="54" width="134" x="109" y="787" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="20" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="blit_ps.hlsl&#xa;Texture2D t_Src : register(t0)" vertex="1">
+          <mxGeometry height="102" width="260" x="46" y="891" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Descriptor Sets&#xa;allocated to match&#xa;SPIR-V bindings" vertex="1">
+          <mxGeometry height="102" width="190" x="81" y="3095" as="geometry" />
+        </mxCell>
+        <mxCell id="27" edge="1" parent="1" source="20" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="14" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" edge="1" parent="1" source="14" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="12" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" edge="1" parent="1" source="12" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="7" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" source="7" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="3" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" source="3" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="26" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

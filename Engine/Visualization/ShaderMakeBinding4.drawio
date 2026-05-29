@@ -1,0 +1,141 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="第 1 页" id="eI8bnYaOh9fk_QXRQy2V">
+    <mxGraphModel dx="2632" dy="1556" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=#e8f5e9;strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="WITH Shifts (Solution)" vertex="1">
+          <mxGeometry height="282" width="1143" x="1375" y="247" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="2" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="256-511&#xa;Buffers" vertex="1">
+          <mxGeometry height="78" width="118" x="669" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="2" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="0-127&#xa;Textures" vertex="1">
+          <mxGeometry height="78" width="120" x="93" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="2" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Texture t0 → binding 0" vertex="1">
+          <mxGeometry height="54" width="220" x="43" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="2" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="128-255&#xa;Samplers" vertex="1">
+          <mxGeometry height="78" width="128" x="374" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="2" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Sampler s0 → binding 128" vertex="1">
+          <mxGeometry height="54" width="249" x="313" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="2" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Buffer b0 → binding 256" vertex="1">
+          <mxGeometry height="54" width="232" x="612" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="2" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="384+&#xa;UAVs" vertex="1">
+          <mxGeometry height="78" width="100" x="955" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="2" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="UAV u0 → binding 384" vertex="1">
+          <mxGeometry height="54" width="222" x="894" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="11" edge="1" parent="2" source="4" style="curved=1;startArrow=none;endArrow=none;exitX=0.5;exitY=0.99;entryX=0.5;entryY=-0.01;" target="5" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="12" edge="1" parent="2" source="6" style="curved=1;startArrow=none;endArrow=none;exitX=0.5;exitY=0.99;entryX=0.5;entryY=-0.01;" target="7" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" edge="1" parent="2" source="3" style="curved=1;startArrow=none;endArrow=none;exitX=0.5;exitY=0.99;entryX=0.5;entryY=-0.01;" target="8" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="14" edge="1" parent="2" source="9" style="curved=1;startArrow=none;endArrow=none;exitX=0.5;exitY=0.99;entryX=0.5;entryY=-0.01;" target="10" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="15" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=#ffebee;strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="WITHOUT Shift (Problem!)" vertex="1">
+          <mxGeometry height="306" width="1317" x="8" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="15" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="binding 0" vertex="1">
+          <mxGeometry height="54" width="125" x="313" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="15" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Buffer b0" vertex="1">
+          <mxGeometry height="54" width="125" x="43" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="15" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Texture t0" vertex="1">
+          <mxGeometry height="54" width="130" x="218" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="15" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Sampler s0" vertex="1">
+          <mxGeometry height="54" width="141" x="398" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="15" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="UAV u0" vertex="1">
+          <mxGeometry height="54" width="114" x="589" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="15" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="binding 1" vertex="1">
+          <mxGeometry height="54" width="125" x="753" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="15" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="binding 2" vertex="1">
+          <mxGeometry height="54" width="125" x="928" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="15" style="whiteSpace=wrap;strokeWidth=2;fillColor=#ffcdd2;strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="4 resources trying&#xa;to use binding 0!&#xa;Vulkan ERROR" vertex="1">
+          <mxGeometry height="102" width="187" x="1103" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="24" edge="1" parent="15" source="16" style="curved=1;startArrow=none;endArrow=none;exitX=0;exitY=0.77;entryX=0.5;entryY=-0.01;" target="17" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="105" y="137" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" edge="1" parent="15" source="16" style="curved=1;startArrow=none;endArrow=none;exitX=0.19;exitY=0.99;entryX=0.5;entryY=-0.01;" target="18" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="283" y="137" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" edge="1" parent="15" source="16" style="curved=1;startArrow=none;endArrow=none;exitX=0.81;exitY=0.99;entryX=0.5;entryY=-0.01;" target="19" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="468" y="137" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" edge="1" parent="15" source="16" style="curved=1;startArrow=none;endArrow=none;exitX=1;exitY=0.77;entryX=0.5;entryY=-0.01;" target="20" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="646" y="137" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" parent="1" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="HLSL View (Separate Spaces)" vertex="1">
+          <mxGeometry height="153" width="909" x="852" y="8" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="28" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="b0, b1, b2...&#xa;Buffer registers" vertex="1">
+          <mxGeometry height="78" width="168" x="43" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="28" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="t0, t1, t2...&#xa;Texture registers" vertex="1">
+          <mxGeometry height="78" width="178" x="261" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="28" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="s0, s1, s2...&#xa;Sampler registers" vertex="1">
+          <mxGeometry height="78" width="185" x="489" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="28" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="u0, u1, u2...&#xa;UAV registers" vertex="1">
+          <mxGeometry height="78" width="158" x="725" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" source="28" style="curved=1;startArrow=none;endArrow=block;exitX=0.03;exitY=1;entryX=0.5;entryY=0;" target="15" value="What we want">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="666" y="198" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" source="28" style="curved=1;startArrow=none;endArrow=block;exitX=0.97;exitY=1;entryX=0.5;entryY=0;" target="2" value="slangc shifts">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1946" y="198" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
